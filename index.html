@@ -4,32 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hi, I am Sudipta </title>
+    <title>Hi, I am Sudipta</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            background-image: url('bg.jpeg'); /* Add your image path here */
+            background-image: url('bg.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            color: #333;
         }
 
+        /* Header */
         header {
-            background: rgba(0, 115, 230, 0.8); /* Semi-transparent header background */
+            background: rgba(0, 115, 230, 0.85);
             color: white;
-            padding: 1rem 0;
             text-align: center;
+            padding: 2rem 1rem;
         }
 
+        header .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin: 0.5rem 0;
+        }
+
+        header h3 {
+            font-size: 1rem;
+            color: #f8f9fa;
+            font-style: italic;
+        }
+
+        header p {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+
+        /* Navigation */
         nav {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             background: #005bb5;
-            padding: 0.5rem 0;
+            padding: 0.8rem 0;
         }
 
         nav a {
@@ -37,12 +65,14 @@
             text-decoration: none;
             margin: 0 1rem;
             font-weight: bold;
+            font-size: 1rem;
         }
 
         nav a:hover {
             text-decoration: underline;
         }
 
+        /* Container and Cards */
         .container {
             width: 90%;
             max-width: 1200px;
@@ -51,37 +81,99 @@
             padding: 2rem 0;
         }
 
-        h1, h2 {
-            color: #333;
-        }
-
-        .skills, .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
         .card {
-            background: #ffffff;
-            padding: 1rem;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #005bb5;
             margin-bottom: 1rem;
         }
 
+        ul {
+            padding-left: 1.5rem;
+        }
+
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Grid Layouts */
+        .skills, .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Footer */
         footer {
             background: #333;
             color: white;
             text-align: center;
-            padding: 1rem 0;
+            padding: 1rem;
             margin-top: 2rem;
         }
 
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-top: 20px;
+        footer a {
+            color: #4db8ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header h3 {
+                font-size: 0.9rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+                margin: 0 0.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            header h1 {
+                font-size: 1.2rem;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+                margin: 0 0.3rem;
+            }
+
+            .container {
+                width: 95%;
+            }
         }
     </style>
 </head>
@@ -89,9 +181,9 @@
 <body>
     <header>
         <img src="Rik.jpg" alt="Sudipta Sarkar" class="profile-img" />
-       <h1 style="color: white;">SUDIPTA SARKAR (সুদীপ্ত সরকার)</h1>
-      <h3 style="color: black;"><i>"Education is the manifestation of the perfection already in man." - <b>Swami Vivekananda</b></i></h3>
-       <p>|| An Enthusiastic Learner || Computer Science || Deep Learning || Computer Vision ||</p>
+        <h1>SUDIPTA SARKAR (সুদীপ্ত সরকার)</h1>
+        <h3><i>"Education is the manifestation of the perfection already in man." - <b>Swami Vivekananda</b></i></h3>
+        <p>|| An Enthusiastic Learner || Computer Science || Deep Learning || Computer Vision ||</p>
     </header>
 
     <nav>
@@ -104,7 +196,6 @@
         <a href="#references">References</a>
         <a href="#contact">Contact</a>
     </nav>
-
     <div class="container">
         <section id="about">
             <div class="card">
@@ -318,7 +409,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 Sudipta Sarkar | All Rights Reserved</p>
+        <p>&copy; 2025 Sudipta Sarkar | <a href="mailto:sudiptasarkar3600@gmail.com">Contact Me</a></p>
     </footer>
 </body>
 
