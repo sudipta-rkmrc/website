@@ -112,16 +112,16 @@
             background: var(--card-bg);
             position: fixed;
             top: 0;
-            left: -250px;
+            left: 0;
             height: 100%;
             overflow-y: auto;
-            transition: left 0.3s ease;
             border-right: 1px solid var(--border-color);
             z-index: 1000;
+            transition: transform 0.3s ease;
         }
 
-        .sidebar.active {
-            left: 0;
+        .sidebar.hidden {
+            transform: translateX(-250px);
         }
 
         .sidebar .nav-container {
@@ -140,7 +140,7 @@
             transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
         }
 
-        .sidebar.active a {
+        .sidebar:not(.hidden) a {
             opacity: 1;
             transform: translateX(0);
         }
@@ -237,40 +237,77 @@
             text-decoration: underline;
         }
 
-        /* Skills Section */
-        .skills-section {
-            margin-bottom: 2rem;
-        }
-
-        .skills-section ul {
+        /* Skills Layout */
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
             list-style: none;
             padding: 0;
         }
 
-        .skills-section li {
-            padding: 0.5rem 0;
-            font-size: 1rem;
-            transition: transform 0.3s ease, color 0.3s ease;
+        .skills-list li {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: skillFadeIn 0.5s ease forwards;
         }
 
-        .skills-section li:hover {
-            transform: translateY(-2px);
-            color: var(--link-color);
+        .skills-list li:nth-child(1) { animation-delay: 0.1s; }
+        .skills-list li:nth-child(2) { animation-delay: 0.15s; }
+        .skills-list li:nth-child(3) { animation-delay: 0.2s; }
+        .skills-list li:nth-child(4) { animation-delay: 0.25s; }
+        .skills-list li:nth-child(5) { animation-delay: 0.3s; }
+        .skills-list li:nth-child(6) { animation-delay: 0.35s; }
+        .skills-list li:nth-child(7) { animation-delay: 0.4s; }
+        .skills-list li:nth-child(8) { animation-delay: 0.45s; }
+        .skills-list li:nth-child(9) { animation-delay: 0.5s; }
+
+        .skills-list li:hover {
+            transform: translateY(-3px) rotate(2deg);
         }
 
-        /* Projects Section */
-        .projects-section {
-            margin-bottom: 2rem;
+        @keyframes skillFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Projects Layout */
+        .projects-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
 
         .project-item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: projectFadeIn 0.5s ease forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
-        .project-item:last-child {
-            border-bottom: none;
+        .project-item:nth-child(1) { animation-delay: 0.1s; }
+        .project-item:nth-child(2) { animation-delay: 0.15s; }
+        .project-item:nth-child(3) { animation-delay: 0.2s; }
+        .project-item:nth-child(4) { animation-delay: 0.25s; }
+        .project-item:nth-child(5) { animation-delay: 0.3s; }
+        .project-item:nth-child(6) { animation-delay: 0.35s; }
+        .project-item:nth-child(7) { animation-delay: 0.4s; }
+        .project-item:nth-child(8) { animation-delay: 0.45s; }
+        .project-item:nth-child(9) { animation-delay: 0.5s; }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px var(--shadow-color);
+            border-color: var(--link-color);
         }
 
         .project-item h3 {
@@ -278,13 +315,11 @@
             margin: 0 0 0.5rem;
         }
 
-        .project-item p {
-            margin: 0.5rem 0;
-            color: var(--text-color);
-        }
-
-        .project-item:hover {
-            transform: translateY(-3px);
+        @keyframes projectFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Timeline for Recent Activities */
@@ -422,11 +457,11 @@
         /* Media Queries */
         @media (max-width: 1024px) {
             .sidebar {
-                left: -250px;
+                transform: translateX(-250px);
             }
 
-            .sidebar.active {
-                left: 0;
+            .sidebar:not(.hidden) {
+                transform: translateX(0);
             }
 
             .container {
@@ -455,20 +490,20 @@
                 font-size: 1.8rem;
             }
 
+            .card {
+                padding: 1.5rem;
+            }
+
+            .skills-list, .projects-list {
+                grid-template-columns: 1fr;
+            }
+
             .container {
                 padding: 1.5rem;
             }
 
             .map-container {
                 height: 250px;
-            }
-
-            .skills-section li {
-                font-size: 0.95rem;
-            }
-
-            .project-item h3 {
-                font-size: 1.2rem;
             }
         }
 
@@ -492,14 +527,6 @@
 
             .map-container {
                 height: 200px;
-            }
-
-            .skills-section li {
-                font-size: 0.9rem;
-            }
-
-            .project-item h3 {
-                font-size: 1.1rem;
             }
         }
     </style>
@@ -595,80 +622,86 @@
             </div>
         </section>
 
-        <section id="skills" class="skills-section">
-            <h2>Skills</h2>
-            <ul>
-                <li><a href="https://en.wikipedia.org/wiki/C_(programming_language)">C/C++ Programming</a></li>
-                <li><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a></li>
-                <li><a href="https://en.wikipedia.org/wiki/Algorithm_design">Algorithm Design</a></li>
-                <li><a href="https://en.wikipedia.org/wiki/Data_structure">Data Structures</a></li>
-                <li><a href="https://en.wikipedia.org/wiki/Database_management_system">Database Management</a></li>
-                <li><a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a></li>
-                <li><a href="https://en.wikipedia.org/wiki/Computer_vision">Computer Vision</a></li>
-                <li><a href="https://en.wikipedia.org/wiki/Theoretical_computer_science">Theoretical Computer Science</a></li>
-                <li><a href="https://en.wikipedia.org/wiki/Machine_learning">Machine Learning</a></li>
-            </ul>
+        <section id="skills">
+            <div class="card">
+                <h2>Skills</h2>
+                <ul class="skills-list">
+                    <li><a href="https://en.wikipedia.org/wiki/C_(programming_language)">C/C++ Programming</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Algorithm_design">Algorithm Design</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Data_structure">Data Structures</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Database_management_system">Database Management</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Computer_vision">Computer Vision</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Theoretical_computer_science">Theoretical Computer Science</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Machine_learning">Machine Learning</a></li>
+                </ul>
+            </div>
         </section>
 
-        <section id="projects" class="projects-section">
-            <h2>Projects and Research</h2>
-            <div class="project-item">
-                <h3>Super Image For Efficient Large Scale Video Action Recognition</h3>
-                <p>Rearranged video frames into super images to convert video action recognition into an image classification task. Employed Hiera Vision Transformer (Hiera-ViT) as the classifier, achieving competitive results on <a href="https://deepmind.com/research/open-source/kinetics">Kinetics-400</a> and <a href="https://www.robots.ox.ac.uk/~vgg/data/something-something/">Something-Something V2</a> datasets.</p>
-                <p>Tools: <a href="https://pytorch.org">PyTorch</a>, Video Action Recognition, Activity Detection</p>
-                <p>Project Status: Ongoing (Final Year M.Sc. Project at <a href="https://rkmrc.in">RKMRC</a>)</p>
-                <p>Supervisor: Dr. Abir Das, Assistant Professor, <a href="https://cse.iitkgp.ac.in/~adas/">IIT Kharagpur</a></p>
-            </div>
-            <div class="project-item">
-                <h3>Image Steganography and Steganalysis</h3>
-                <p>Focused on improving message hiding techniques using Steganography and applying Steganalysis to detect hidden signals. Aims to maximize PSNR and NCC values using optimizers like PSO and apply CNNs and LSTMs for Steganalysis.</p>
-                <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Steganography">Steganography</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, CNN, LSTM</p>
-                <p>Project Status: Ongoing at <a href="https://rkmrc.in">RKMRC</a></p>
-                <p>Supervisors: Dr. Siddhartha Banerjee & Bibek Ranjan Ghosh, Associate Professors, <a href="https://rkmrc.in">Ramakrishna Mission Residential College</a></p>
-            </div>
-            <div class="project-item">
-                <h3>Human Facial Expressions Detection using CNN</h3>
-                <p>Aims to detect key human emotions like anger, disgust, fear, happiness, sadness, surprise, and neutrality using Convolutional Neural Networks (CNN). Achieved 61.25% validation accuracy after 42 epochs.</p>
-                <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, CNN</p>
-                <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/FER%20Project">Show Project</a></p>
-                <p>Supervised by: Prasenjit Das, Assistant Professor & Dr. Chayan Halder, Assistant Professor, <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College</a></p>
-            </div>
-            <div class="project-item">
-                <h3>Nuclei Segmentation using UNet</h3>
-                <p>Explores cell nuclei segmentation for microscopy image analysis, vital for biological studies, using UNet in resource-constrained environments.</p>
-                <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, <a href="https://en.wikipedia.org/wiki/U-Net">UNet</a></p>
-                <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/Nuclei%20Segmentation%20using%20UNet">Show Project</a></p>
-                <p>Supervised by: Dr. Biswajit Biswas, Assistant Professor, <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College</a></p>
-            </div>
-            <div class="project-item">
-                <h3>Potato Disease Classification using CNN</h3>
-                <p>Classifies potato leaf diseases using deep learning to improve early detection and crop cultivation in agriculture.</p>
-                <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, CNN</p>
-                <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/Potato%20Disease%20Classification%20using%20CNN">Show Project</a></p>
-            </div>
-            <div class="project-item">
-                <h3>Virtual Assistant Using OpenAI</h3>
-                <p>Developed a voice-interactive virtual assistant mimicking Amazon Alexa or Siri using the OpenAI API and Python libraries.</p>
-                <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://openai.com">OpenAI API</a>, pyttsx3, speech_recognition, webbrowser</p>
-                <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/Virtual%20Assistant.py">Show Project</a></p>
-            </div>
-            <div class="project-item">
-                <h3>Number Tracking Game Using Backtracking Algorithms</h3>
-                <p>CLI-based game in C++ where players race to reach a target number using backtracking algorithms, designed for the machine to win if it selects first.</p>
-                <p>Tools: <a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a></p>
-                <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/NumberTracingGame.cpp">Show Project</a></p>
-            </div>
-            <div class="project-item">
-                <h3>Data Structure and Algorithm - Open Source</h3>
-                <p>Contributed to an open-source collection of data structure and algorithm implementations for B.Sc. Computer Science students per UGC syllabus.</p>
-                <p>Tools: <a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>, <a href="https://en.wikipedia.org/wiki/Data_structure">Data Structures</a>, <a href="https://en.wikipedia.org/wiki/Algorithm">Algorithms</a></p>
-                <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Data%20Structure">Show Project</a></p>
-            </div>
-            <div class="project-item">
-                <h3>Medical Store Billing Management System Software</h3>
-                <p>CLI-based billing system for medical stores developed in C++ during my first semester.</p>
-                <p>Tools: <a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a></p>
-                <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/Medicalstorebillingsystem.cpp">Show Project</a></p>
+        <section id="projects">
+            <div class="card">
+                <h2>Projects and Research</h2>
+                <div class="projects-list">
+                    <div class="project-item">
+                        <h3>Super Image For Efficient Large Scale Video Action Recognition</h3>
+                        <p>Rearranged video frames into super images to convert video action recognition into an image classification task. Employed Hiera Vision Transformer (Hiera-ViT) as the classifier, achieving competitive results on <a href="https://deepmind.com/research/open-source/kinetics">Kinetics-400</a> and <a href="https://www.robots.ox.ac.uk/~vgg/data/something-something/">Something-Something V2</a> datasets.</p>
+                        <p>Tools: <a href="https://pytorch.org">PyTorch</a>, Video Action Recognition, Activity Detection</p>
+                        <p>Project Status: Ongoing (Final Year M.Sc. Project at <a href="https://rkmrc.in">RKMRC</a>)</p>
+                        <p>Supervisor: Dr. Abir Das, Assistant Professor, <a href="https://cse.iitkgp.ac.in/~adas/">IIT Kharagpur</a></p>
+                    </div>
+                    <div class="project-item">
+                        <h3>Image Steganography and Steganalysis</h3>
+                        <p>Focused on improving message hiding techniques using Steganography and applying Steganalysis to detect hidden signals. Aims to maximize PSNR and NCC values using optimizers like PSO and apply CNNs and LSTMs for Steganalysis.</p>
+                        <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Steganography">Steganography</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, CNN, LSTM</p>
+                        <p>Project Status: Ongoing at <a href="https://rkmrc.in">RKMRC</a></p>
+                        <p>Supervisors: Dr. Siddhartha Banerjee & Bibek Ranjan Ghosh, Associate Professors, <a href="https://rkmrc.in">Ramakrishna Mission Residential College</a></p>
+                    </div>
+                    <div class="project-item">
+                        <h3>Human Facial Expressions Detection using CNN</h3>
+                        <p>Aims to detect key human emotions like anger, disgust, fear, happiness, sadness, surprise, and neutrality using Convolutional Neural Networks (CNN). Achieved 61.25% validation accuracy after 42 epochs.</p>
+                        <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, CNN</p>
+                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/FER%20Project">Show Project</a></p>
+                        <p>Supervised by: Prasenjit Das, Assistant Professor & Dr. Chayan Halder, Assistant Professor, <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College</a></p>
+                    </div>
+                    <div class="project-item">
+                        <h3>Nuclei Segmentation using UNet</h3>
+                        <p>Explores cell nuclei segmentation for microscopy image analysis, vital for biological studies, using UNet in resource-constrained environments.</p>
+                        <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, <a href="https://en.wikipedia.org/wiki/U-Net">UNet</a></p>
+                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/Nuclei%20Segmentation%20using%20UNet">Show Project</a></p>
+                        <p>Supervised by: Dr. Biswajit Biswas, Assistant Professor, <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College</a></p>
+                    </div>
+                    <div class="project-item">
+                        <h3>Potato Disease Classification using CNN</h3>
+                        <p>Classifies potato leaf diseases using deep learning to improve early detection and crop cultivation in agriculture.</p>
+                        <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, CNN</p>
+                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/Potato%20Disease%20Classification%20using%20CNN">Show Project</a></p>
+                    </div>
+                    <div class="project-item">
+                        <h3>Virtual Assistant Using OpenAI</h3>
+                        <p>Developed a voice-interactive virtual assistant mimicking Amazon Alexa or Siri using the OpenAI API and Python libraries.</p>
+                        <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://openai.com">OpenAI API</a>, pyttsx3, speech_recognition, webbrowser</p>
+                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/Virtual%20Assistant.py">Show Project</a></p>
+                    </div>
+                    <div class="project-item">
+                        <h3>Number Tracking Game Using Backtracking Algorithms</h3>
+                        <p>CLI-based game in C++ where players race to reach a target number using backtracking algorithms, designed for the machine to win if it selects first.</p>
+                        <p>Tools: <a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a></p>
+                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/NumberTracingGame.cpp">Show Project</a></p>
+                    </div>
+                    <div class="project-item">
+                        <h3>Data Structure and Algorithm - Open Source</h3>
+                        <p>Contributed to an open-source collection of data structure and algorithm implementations for B.Sc. Computer Science students per UGC syllabus.</p>
+                        <p>Tools: <a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>, <a href="https://en.wikipedia.org/wiki/Data_structure">Data Structures</a>, <a href="https://en.wikipedia.org/wiki/Algorithm">Algorithms</a></p>
+                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Data%20Structure">Show Project</a></p>
+                    </div>
+                    <div class="project-item">
+                        <h3>Medical Store Billing Management System Software</h3>
+                        <p>CLI-based billing system for medical stores developed in C++ during my first semester.</p>
+                        <p>Tools: <a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a></p>
+                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/Medicalstorebillingsystem.cpp">Show Project</a></p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -798,6 +831,9 @@
     </footer>
 
     <script>
+        // Debug: Log to confirm script execution
+        console.log('JavaScript loaded');
+
         // Dark Mode Toggle
         const themeSwitch = document.getElementById('theme-switch');
         const body = document.body;
@@ -809,6 +845,7 @@
         }
 
         themeSwitch.addEventListener('change', () => {
+            console.log('Theme toggle clicked');
             if (themeSwitch.checked) {
                 body.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
@@ -823,15 +860,29 @@
         const sidebar = document.querySelector('.sidebar');
 
         menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
+            console.log('Menu toggle clicked');
+            sidebar.classList.toggle('hidden');
         });
 
         // Close sidebar when clicking a link
         sidebar.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                sidebar.classList.remove('active');
+                console.log('Sidebar link clicked');
+                sidebar.classList.add('hidden');
             });
         });
+
+        // Ensure sidebar is visible on larger screens
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024) {
+                sidebar.classList.remove('hidden');
+            }
+        });
+
+        // Initial check for sidebar visibility
+        if (window.innerWidth > 1024) {
+            sidebar.classList.remove('hidden');
+        }
     </script>
 </body>
 </html>
