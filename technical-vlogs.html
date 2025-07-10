@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Vlogs - Sudipta Sarkar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        :root {
+            --primary-color: #2b6cb0;
+            --secondary-color: #4a5568;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #1a202c;
+            --link-color: #3182ce;
+            --border-color: #e2e8f0;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #00ccff;
+            --secondary-color: #b0b0b0;
+            --bg-color: #1a202c;
+            --card-bg: #2d3748;
+            --text-color: #e2e8f0;
+            --link-color: #00ccff;
+            --border-color: #4a5568;
+            --shadow-color: rgba(0, 204, 255, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Header */
+        header {
+            background: var(--card-bg);
+            color: var(--text-color);
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        header h1 {
+            font-family: 'Lora', serif;
+            font-size: 2rem;
+            margin: 0.5rem 0;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-toggle input {
+            display: none;
+        }
+
+        .theme-toggle label {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle label:hover {
+            transform: scale(1.1);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            background: var(--primary-color);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav a {
+            color: var(--card-bg);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--link-color);
+            text-decoration: underline;
+        }
+
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .coming-soon {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px var(--shadow-color);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease forwards;
+            text-align: center;
+        }
+
+        .coming-soon-title {
+            font-family: 'Lora', serif;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .coming-soon-content {
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+
+        .ellipsis::after {
+            content: '...';
+            display: inline-block;
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            color: var(--text-color);
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            .coming-soon {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            nav a {
+                margin: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .coming-soon-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="theme-toggle">
+            <input type="checkbox" id="theme-switch">
+            <label for="theme-switch"><i class="fas fa-moon"></i></label>
+        </div>
+        <h1>Technical Vlogs</h1>
+        <p>Coming Soon - Sudipta Sarkar</p>
+    </header>
+
+    <nav>
+        <a href="index_academic_refined.html">Home</a>
+        <a href="index_academic_refined.html#about">About</a>
+        <a href="index_academic_refined.html#education">Education</a>
+        <a href="index_academic_refined.html#skills">Skills</a>
+        <a href="index_academic_refined.html#projects">Projects</a>
+        <a href="index_academic_refined.html#achievements">Achievements</a>
+        <a href="index_academic_refined.html#languages">Languages</a>
+        <a href="index_academic_refined.html#references">References</a>
+        <a href="writings.html">My Writings</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="technical-vlogs.html">Technical Vlogs</a>
+        <a href="index_academic_refined.html#contact">Contact</a>
+    </nav>
+
+    <div class="container">
+        <div class="coming-soon">
+            <div class="coming-soon-title">Technical Vlogs Coming Soon<span class="ellipsis"></span></div>
+            <div class="coming-soon-content">
+                Stay tuned for exciting technical vlogs exploring the world of coding, algorithms, and technology! I’m working on creating content that blends computer science with practical insights, inspired by my journey at Ramakrishna Mission Residential College. Follow the <a href="index_academic_refined.html#activities">Recent Activities</a> section on my website for updates on upcoming vlogs.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Sudipta Sarkar | Department of Computer Science, <a href="https://rkmrc.in">Ramakrishna Mission Residential College</a>, Narendrapur, Kolkata</p>
+        <div class="social-icons">
+            <a href="mailto:sudiptasarkar3600@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/Rik-Sarkar-07"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/sudipta-sarkar-0665b5253/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://x.com/sarkar360000"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@Rik-Sarkar--CS"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Debug: Log to confirm script execution
+        console.log('JavaScript loaded');
+
+        // Dark Mode Toggle
+        const themeSwitch = document.getElementById('theme-switch');
+        const body = document.body;
+
+        // Load saved theme from localStorage
+        if (localStorage.getItem('theme') === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            themeSwitch.checked = true;
+        }
+
+        themeSwitch.addEventListener('change', () => {
+            console.log('Theme toggle clicked');
+            if (themeSwitch.checked) {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>
