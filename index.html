@@ -1,98 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hi, I am Sudipta</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Sudipta Sarkar - Research Scholar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* General Styles */
+        :root {
+            --primary-color: #2b6cb0;
+            --secondary-color: #4a5568;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #1a202c;
+            --link-color: #3182ce;
+            --border-color: #e2e8f0;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #00ccff;
+            --secondary-color: #b0b0b0;
+            --bg-color: #1a202c;
+            --card-bg: #2d3748;
+            --text-color: #e2e8f0;
+            --link-color: #00ccff;
+            --border-color: #4a5568;
+            --shadow-color: rgba(0, 204, 255, 0.2);
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Open Sans', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
-            /*background-image: url('bg.jpeg'); */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #333;
+            line-height: 1.7;
+            background: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
         }
 
         /* Header */
         header {
-            background: rgba(0, 115, 230, 0.85);
-            color: white;
+            background: var(--card-bg);
             text-align: center;
-            padding: 2rem 1rem;
+            padding: 3rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
         }
 
         header .profile-img {
-            width: 120px;
-            height: 120px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
-            margin-bottom: 1rem;
+            border: 2px solid var(--border-color);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        header .profile-img:hover {
+            transform: scale(1.05) rotate(5deg);
         }
 
         header h1 {
-            font-size: 2rem;
+            font-family: 'Lora', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
             margin: 0.5rem 0;
         }
 
         header h3 {
-            font-size: 1rem;
-            color: #f8f9fa;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
             font-style: italic;
+            margin-bottom: 1rem;
         }
 
         header p {
-            margin-top: 0.5rem;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        /* Navigation */
-        nav {
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            background: #005bb5;
-            padding: 0.8rem 0;
+            align-items: center;
         }
 
-        nav a {
-            color: white;
+        .theme-toggle input {
+            display: none;
+        }
+
+        .theme-toggle label {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle label:hover {
+            transform: scale(1.1);
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 250px;
+            background: var(--card-bg);
+            position: fixed;
+            top: 0;
+            left: -250px;
+            height: 100%;
+            overflow-y: auto;
+            transition: left 0.3s ease;
+            border-right: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar .nav-container {
+            padding: 2rem 1rem;
+        }
+
+        .sidebar a {
+            display: block;
+            color: var(--text-color);
             text-decoration: none;
-            margin: 0 1rem;
-            font-weight: bold;
+            margin: 0.8rem 0;
+            font-weight: 400;
             font-size: 1rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
         }
 
-        nav a:hover {
-            text-decoration: underline;
+        .sidebar.active a {
+            opacity: 1;
+            transform: translateX(0);
         }
 
-        /* Container and Cards */
+        .sidebar a:nth-child(1) { transition-delay: 0.1s; }
+        .sidebar a:nth-child(2) { transition-delay: 0.15s; }
+        .sidebar a:nth-child(3) { transition-delay: 0.2s; }
+        .sidebar a:nth-child(4) { transition-delay: 0.25s; }
+        .sidebar a:nth-child(5) { transition-delay: 0.3s; }
+        .sidebar a:nth-child(6) { transition-delay: 0.35s; }
+        .sidebar a:nth-child(7) { transition-delay: 0.4s; }
+        .sidebar a:nth-child(8) { transition-delay: 0.45s; }
+        .sidebar a:nth-child(9) { transition-delay: 0.5s; }
+        .sidebar a:nth-child(10) { transition-delay: 0.55s; }
+        .sidebar a:nth-child(11) { transition-delay: 0.6s; }
+        .sidebar a:nth-child(12) { transition-delay: 0.65s; }
+        .sidebar a:nth-child(13) { transition-delay: 0.7s; }
+
+        .sidebar a:hover {
+            color: var(--link-color);
+            transform: translateX(5px);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Container */
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            overflow: hidden;
-            padding: 2rem 0;
+            margin-left: 270px;
+            padding: 2rem;
+            max-width: 900px;
         }
 
         .card {
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 1.5rem;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px var(--shadow-color);
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+            animation: cardFadeIn 0.5s ease forwards;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        @keyframes cardFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         h2 {
-            font-size: 1.8rem;
-            color: #005bb5;
-            margin-bottom: 1rem;
+            font-family: 'Lora', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
         }
 
         ul {
@@ -100,122 +224,354 @@
         }
 
         ul li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
         }
 
-        /* Grid Layouts */
-        .skills, .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            margin-bottom: 2rem;
+        }
+
+        .skills-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skills-section li {
+            padding: 0.5rem 0;
+            font-size: 1rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .skills-section li:hover {
+            transform: translateY(-2px);
+            color: var(--link-color);
+        }
+
+        /* Projects Section */
+        .projects-section {
+            margin-bottom: 2rem;
+        }
+
+        .project-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-item:last-child {
+            border-bottom: none;
+        }
+
+        .project-item h3 {
+            font-size: 1.3rem;
+            margin: 0 0 0.5rem;
+        }
+
+        .project-item p {
+            margin: 0.5rem 0;
+            color: var(--text-color);
+        }
+
+        .project-item:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Timeline for Recent Activities */
+        .timeline {
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: timelineSlideIn 0.5s ease forwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.15s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.2s; }
+
+        .timeline-item:hover {
+            transform: scale(1.02);
+        }
+
+        @keyframes timelineSlideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 0.85rem;
+            top: 10px;
+            bottom: -2rem;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.2rem;
+            margin: 0 0 0.5rem;
+        }
+
+        .timeline-item p {
+            margin: 0;
+            color: var(--secondary-color);
+        }
+
+        /* Google Maps Embed */
+        .map-container {
+            margin-top: 1rem;
+            max-width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            opacity: 0;
+            animation: mapFadeIn 0.5s ease forwards 0.5s;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        @keyframes mapFadeIn {
+            to {
+                opacity: 1;
+            }
         }
 
         /* Footer */
         footer {
-            background: #333;
-            color: white;
+            background: var(--card-bg);
+            color: var(--text-color);
             text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
         }
 
-        footer a {
-            color: #4db8ff;
-            text-decoration: none;
+        footer .social-icons a {
+            font-size: 1.6rem;
+            margin: 0 1rem;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: iconBounceIn 0.5s ease forwards;
+            transition: transform 0.3s ease, color 0.3s ease;
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        footer .social-icons a:nth-child(1) { animation-delay: 0.1s; }
+        footer .social-icons a:nth-child(2) { animation-delay: 0.15s; }
+        footer .social-icons a:nth-child(3) { animation-delay: 0.2s; }
+        footer .social-icons a:nth-child(4) { animation-delay: 0.25s; }
+        footer .social-icons a:nth-child(5) { animation-delay: 0.3s; }
+
+        footer .social-icons a:hover {
+            transform: scale(1.2);
+            color: var(--link-color);
         }
 
-        /* Media Queries for Responsiveness */
+        @keyframes iconBounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            60% {
+                transform: scale(1.2);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Media Queries */
+        @media (max-width: 1024px) {
+            .sidebar {
+                left: -250px;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .container {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
         @media (max-width: 768px) {
             header h1 {
-                font-size: 1.5rem;
+                font-size: 2rem;
             }
 
             header h3 {
-                font-size: 0.9rem;
+                font-size: 1.1rem;
             }
 
             header p {
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
 
-            nav a {
-                font-size: 0.9rem;
-                margin: 0 0.5rem;
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            .map-container {
+                height: 250px;
+            }
+
+            .skills-section li {
+                font-size: 0.95rem;
+            }
+
+            .project-item h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
             }
 
             h2 {
                 font-size: 1.5rem;
             }
 
-            .card {
+            .container {
                 padding: 1rem;
             }
-        }
 
-        @media (max-width: 480px) {
-            header .profile-img {
-                width: 100px;
-                height: 100px;
+            .map-container {
+                height: 200px;
             }
 
-            header h1 {
-                font-size: 1.2rem;
+            .skills-section li {
+                font-size: 0.9rem;
             }
 
-            nav a {
-                font-size: 0.8rem;
-                margin: 0 0.3rem;
-            }
-
-            .container {
-                width: 95%;
+            .project-item h3 {
+                font-size: 1.1rem;
             }
         }
     </style>
 </head>
-
 <body>
     <header>
+        <div class="theme-toggle">
+            <input type="checkbox" id="theme-switch">
+            <label for="theme-switch"><i class="fas fa-moon"></i></label>
+        </div>
         <img src="Rik.jpg" alt="Sudipta Sarkar" class="profile-img" />
-        <h1>SUDIPTA SARKAR (সুদীপ্ত সরকার)</h1>
+        <h1>Sudipta Sarkar (সুদীপ্ত সরকার)</h1>
         <h3><i>"Education is the manifestation of the perfection already in man." - <b>Swami Vivekananda</b></i></h3>
-        <p>|| An Enthusiastic Learner || Computer Science || Deep Learning || Computer Vision ||</p>
+        <p>|| Research Scholar || Computer Science || Deep Learning || Computer Vision ||</p>
     </header>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#achievements">Achievements</a>
-        <a href="#languages">Languages</a>
-        <a href="#references">References</a>
-        <a href="writings.html">My Writings</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="#contact">Contact</a>
+    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+    <nav class="sidebar">
+        <div class="nav-container">
+            <a href="index.html">Home</a>
+            <a href="#about">About</a>
+            <a href="#recent-activities">Recent Activities</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#languages">Languages</a>
+            <a href="#curriculum-vitae">Curriculum Vitae</a>
+            <a href="technical-vlogs.html">Technical Vlogs</a>
+            <a href="writings.html">My Writings</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="#contact">Contact</a>
+        </div>
     </nav>
+
     <div class="container">
         <section id="about">
             <div class="card">
                 <h2>About Me</h2>
                 <p>
-                    My name is Sudipta Sarkar (Rik), a strong follower of Swami Vivekananda, Thakur Shree Ramakrishna and Holi Ma Sharada.
-                    Currently, I am pursuing my master's degree in Ramakrishna Mission Residential College (Autonomous), Narendrapur and I completed my bachelor's degree in Computer Science (Hons.) from Ramakrishna Mission Vivekananda Centenary College, Rahara, 
+                    My name is Sudipta Sarkar (Rik), a strong follower of Swami Vivekananda, Thakur Shree Ramakrishna, and Holi Ma Sharada.
+                    Currently, I am pursuing my master's degree in Computer Science at <a href="https://rkmrc.in">Ramakrishna Mission Residential College (Autonomous), Narendrapur</a>, and I completed my bachelor's degree in Computer Science (Hons.) from <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College, Rahara</a>.
                 </p>
                 <p>
                     During my five years of undergraduate and postgraduate studies, I had the opportunity to visit more than three Ramakrishna Mission Centers. I deeply admire their philosophy, work, and spiritual ideologies. Throughout this period, I met many potential friends, teachers, and monks who have continuously encouraged me to be a diligent learner and, more importantly, a good human being. I am truly grateful to all my friends, teachers, family members, and especially to the monks, whose guidance has played a crucial role in shaping me into a better person. Today, I strive not only to excel in the field of computing but also to grow spiritually and become a better individual in every aspect of life.
-                </p>  
-                  <p>
-                     The name "Sudipta" (সুদীপ্ত) is of Sanskrit origin and is commonly used in Bengali-speaking regions. It is a combination of two Sanskrit words:
-                    "Su" meaning "good," "auspicious," or "prosperous".
-                    "Dipta" meaning "bright," "shining," or "illuminated".
-                    So, the meaning of Sudipta is often interpreted as "one who is brightly shining"(যে আলোকিতভাবে উজ্জ্বল) or "the one who is prosperous and enlightened."(যে সমৃদ্ধ ও জ্ঞানী) It conveys the idea of someone who is radiant, intellectually bright, or blessed with success.
                 </p>
+                <p>
+                    The name "Sudipta" (সুদীপ্ত) is of Sanskrit origin and is commonly used in Bengali-speaking regions. It is a combination of two Sanskrit words:
+                    "Su" meaning "good," "auspicious," or "prosperous," and "Dipta" meaning "bright," "shining," or "illuminated."
+                    Thus, Sudipta is often interpreted as "one who is brightly shining" (যে আলোকিতভাবে উজ্জ্বল) or "the one who is prosperous and enlightened" (যে সমৃদ্ধ ও জ্ঞানী). It conveys the idea of someone who is radiant, intellectually bright, or blessed with success.
+                </p>
+            </div>
+        </section>
+
+        <section id="recent-activities">
+            <div class="card">
+                <h2>Recent Activities</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>May 19, 2025</h3>
+                        <p>Final Semester Thesis Presentation and submission at <a href="https://rkmrc.in">RKMRC</a>.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>May 17, 2025</h3>
+                        <p>Given a Seminar on Image Generation and Diffusion Models at <a href="https://rkmrc.in">RKMRC</a>.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>January 7, 2025</h3>
+                        <p>Started final year M.Sc. project on Video Action Recognition under Dr. Abir Das at <a href="https://cse.iitkgp.ac.in/~adas/">IIT Kharagpur</a>.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -223,102 +579,120 @@
             <div class="card">
                 <h2>Education</h2>
                 <ul>
-                    <li><strong>Ramakrishna Mission Residential College (Sept. 2023 – June 2025)</strong>: M.Sc. in Computer Science, CGPA: 9.95/10.00 (96.30 %)</li>
-                    <li><strong>Ramakrishna Mission Vivekananda Centenary College (Sept. 2020 – May 2023)</strong>: B.Sc. in Computer Science, CGPA: 9.72/10.00 (92.02 %)</li>
-                     <li><strong>Hogalbaria Adarsha Siksha Niketan(H.S), Hogalbaria, Karimpur-I, Nadia (Jan. 2012 – July 2020)</strong>: High School (Science), GPA: 83.00% </li>
-                
+                    <li>
+                        <strong><a href="https://rkmrc.in">Ramakrishna Mission Residential College (Autonomous), Narendrapur</a> (NIRF India Ranking 2024: 24th in India) (Sept. 2023 – June 2025)</strong>: M.Sc. in Computer Science, CGPA: 9.95/10.00 (96.30%)<br>
+                        <p>Specializing in advanced topics like Deep Learning, Computer Vision, and Algorithms. My coursework includes Machine Learning, Image Processing, and Data Science, with a focus on research-oriented projects under esteemed faculty. The college, affiliated with <a href="https://www.caluniv.ac.in/">University of Calcutta</a>, is renowned for its holistic education combining academic excellence with spiritual values, inspired by Swami Vivekananda’s teachings.</p>
+                    </li>
+                    <li>
+                        <strong><a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College, Rahara</a> (NIRF India Ranking 2024: 3rd in India) (Sept. 2020 – May 2023)</strong>: B.Sc. in Computer Science (Hons.), CGPA: 9.72/10.00 (92.02%)<br>
+                        <p>Studied core computer science subjects including Data Structures, Algorithms, and Database Systems. Conducted undergraduate research in Deep Learning and Computer Vision. The institution, affiliated with <a href="https://www.wbsuexams.net/">West Bengal State University (WBSU)</a>, emphasizes scientific rigor and ethical values.</p>
+                    </li>
+                    <li>
+                        <strong>Hogalbaria Adarsha Siksha Niketan (H.S.), Hogalbaria, Karimpur-I, Nadia (Jan. 2012 – July 2020)</strong>: High School (Science), GPA: 83.00%<br>
+                        <p>Studied in a Bengali Medium School affiliated with the <a href="https://wbchse.wb.gov.in/">West Bengal Council of Higher Secondary Education (WBCHSE)</a>. Located in a rural area near the India-Bangladesh border with poor development and limited resources, the school faced a shortage of teachers and students. I was the only student in the science stream for classes 11th and 12th, which fostered resilience and self-reliance. Focused on Physics, Chemistry, Mathematics, and Biology, building a strong foundation in scientific principles. Participated in science fairs and regional competitions, fostering an early interest in technology.</p>
+                    </li>
                 </ul>
             </div>
         </section>
 
-        <section id="skills">
-            <div class="card">
-                <h2>Skills</h2>
-                <div class="skills">
-                    <div class="card">C & C++ Programming</div>
-                    <div class="card">Python</div>
-                    <div class="card">Design and Analysis of Algorithms</div>
-                    <div class="card">Data Structures</div>
-                    <div class="card">Database Management Systems</div>
-                    <div class="card">Deep Learning</div>
-                    <div class="card"> Digital Image Processing & Computer Vision</div>
-                    <div class="card">Theoretical Computer Science</div>
-                    <div class="card"> Artificial Intelligence & Machine Learning</div>
-                </div>
+        <section id="skills" class="skills-section">
+            <h2>Skills</h2>
+            <ul>
+                <li><a href="https://en.wikipedia.org/wiki/C_(programming_language)">C/C++ Programming</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Algorithm_design">Algorithm Design</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Data_structure">Data Structures</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Database_management_system">Database Management</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Computer_vision">Computer Vision</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Theoretical_computer_science">Theoretical Computer Science</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Machine_learning">Machine Learning</a></li>
+            </ul>
+        </section>
+
+        <section id="projects" class="projects-section">
+            <h2>Projects and Research</h2>
+            <div class="project-item">
+                <h3>Super Image For Efficient Large Scale Video Action Recognition</h3>
+                <p>Rearranged video frames into super images to convert video action recognition into an image classification task. Employed Hiera Vision Transformer (Hiera-ViT) as the classifier, achieving competitive results on <a href="https://deepmind.com/research/open-source/kinetics">Kinetics-400</a> and <a href="https://www.robots.ox.ac.uk/~vgg/data/something-something/">Something-Something V2</a> datasets.</p>
+                <p>Tools: <a href="https://pytorch.org">PyTorch</a>, Video Action Recognition, Activity Detection</p>
+                <p>Project Status: Ongoing (Final Year M.Sc. Project at <a href="https://rkmrc.in">RKMRC</a>)</p>
+                <p>Supervisor: Dr. Abir Das, Assistant Professor, <a href="https://cse.iitkgp.ac.in/~adas/">IIT Kharagpur</a></p>
+            </div>
+            <div class="project-item">
+                <h3>Image Steganography and Steganalysis</h3>
+                <p>Focused on improving message hiding techniques using Steganography and applying Steganalysis to detect hidden signals. Aims to maximize PSNR and NCC values using optimizers like PSO and apply CNNs and LSTMs for Steganalysis.</p>
+                <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Steganography">Steganography</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, CNN, LSTM</p>
+                <p>Project Status: Ongoing at <a href="https://rkmrc.in">RKMRC</a></p>
+                <p>Supervisors: Dr. Siddhartha Banerjee & Bibek Ranjan Ghosh, Associate Professors, <a href="https://rkmrc.in">Ramakrishna Mission Residential College</a></p>
+            </div>
+            <div class="project-item">
+                <h3>Human Facial Expressions Detection using CNN</h3>
+                <p>Aims to detect key human emotions like anger, disgust, fear, happiness, sadness, surprise, and neutrality using Convolutional Neural Networks (CNN). Achieved 61.25% validation accuracy after 42 epochs.</p>
+                <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, CNN</p>
+                <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/FER%20Project">Show Project</a></p>
+                <p>Supervised by: Prasenjit Das, Assistant Professor & Dr. Chayan Halder, Assistant Professor, <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College</a></p>
+            </div>
+            <div class="project-item">
+                <h3>Nuclei Segmentation using UNet</h3>
+                <p>Explores cell nuclei segmentation for microscopy image analysis, vital for biological studies, using UNet in resource-constrained environments.</p>
+                <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, <a href="https://en.wikipedia.org/wiki/U-Net">UNet</a></p>
+                <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/Nuclei%20Segmentation%20using%20UNet">Show Project</a></p>
+                <p>Supervised by: Dr. Biswajit Biswas, Assistant Professor, <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College</a></p>
+            </div>
+            <div class="project-item">
+                <h3>Potato Disease Classification using CNN</h3>
+                <p>Classifies potato leaf diseases using deep learning to improve early detection and crop cultivation in agriculture.</p>
+                <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, CNN</p>
+                <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/Potato%20Disease%20Classification%20using%20CNN">Show Project</a></p>
+            </div>
+            <div class="project-item">
+                <h3>Virtual Assistant Using OpenAI</h3>
+                <p>Developed a voice-interactive virtual assistant mimicking Amazon Alexa or Siri using the OpenAI API and Python libraries.</p>
+                <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://openai.com">OpenAI API</a>, pyttsx3, speech_recognition, webbrowser</p>
+                <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/Virtual%20Assistant.py">Show Project</a></p>
+            </div>
+            <div class="project-item">
+                <h3>Number Tracking Game Using Backtracking Algorithms</h3>
+                <p>CLI-based game in C++ where players race to reach a target number using backtracking algorithms, designed for the machine to win if it selects first.</p>
+                <p>Tools: <a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a></p>
+                <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/NumberTracingGame.cpp">Show Project</a></p>
+            </div>
+            <div class="project-item">
+                <h3>Data Structure and Algorithm - Open Source</h3>
+                <p>Contributed to an open-source collection of data structure and algorithm implementations for B.Sc. Computer Science students per UGC syllabus.</p>
+                <p>Tools: <a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>, <a href="https://en.wikipedia.org/wiki/Data_structure">Data Structures</a>, <a href="https://en.wikipedia.org/wiki/Algorithm">Algorithms</a></p>
+                <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Data%20Structure">Show Project</a></p>
+            </div>
+            <div class="project-item">
+                <h3>Medical Store Billing Management System Software</h3>
+                <p>CLI-based billing system for medical stores developed in C++ during my first semester.</p>
+                <p>Tools: <a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a></p>
+                <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/Medicalstorebillingsystem.cpp">Show Project</a></p>
             </div>
         </section>
 
-        <section id="projects">
+        <section id="experience">
             <div class="card">
-                <h2>Projects and Research</h2>
-                <div class="projects">
-                    <div class="card">
-                        <h3>Super Image For Efficient Large Scale Video Action Recognition</h3>
-                        <p>Rearranged video frames into super images to convert video action recognition into an image classification task. Employed Hiera Vision Transformer (Hiera-ViT) as the classifier, achieving competitive results on Kinetics-400 and Something-Something V2 (SSV2) datasets.</p>
-                        <p>Tools: PyTorch, Video Action Recognition, Activity Detection</p>
-                        <p>Project Link: <h4>Ongoing (Final Year M.Sc. Project)</h4></p>
-                        <p>Supervisor: Dr. Abir Das, Assistant Professor, IIT Kharagpur</p>
-                    </div>
-
-                    <div class="card">
-                        <h3>Image Steganography and Steganalysis</h3>
-                        <p>This project focuses on improving message hiding techniques using Steganography and applying Steganalysis to detect hidden signals. The goal is to maximize PSNR and NCC values using optimizers like PSO and apply CNNs and LSTMs for Steganalysis.</p>
-                        <p>Tools: Python, Steganography, Deep Learning, CNN, LSTM</p>
-                        <p>Project Link: <h4>Ongoing</h4></p>
-                        <p>Supervisors: Dr. Siddhartha Banerjee & Bibek Ranjan Ghosh, Associate Professors, Ramakrishna Mission Residential College</p>
-                    </div>
-
-                    <div class="card">
-                        <h3>Human Facial Expressions Detection using CNN</h3>
-                        <p>The project aims to detect key human emotions like anger, disgust, fear, happiness, sadness, surprise, and neutrality using Convolutional Neural Networks (CNN). The model achieves 61.25% validation accuracy after 42 epochs.</p>
-                        <p>Tools: Python, Deep Learning, CNN</p>
-                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/FER%20Project">Show Project</a></p>
-                        <p>Supervised by: Prasenjit Das, Assistant Professor & Dr. Chayan Halder, Assistant Professor, Ramakrishna Mission Vivekananda Centenary College</p>
-                    </div>
-
-                    <div class="card">
-                        <h3>Nuclei Segmentation using UNet</h3>
-                        <p>Cell nuclei segmentation is a vital task in microscopy image analysis for biological studies. This project explores developing accurate segmentation algorithms that can run on resource-constrained computing environments.</p>
-                        <p>Tools: Python, Deep Learning, UNet</p>
-                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/Nuclei%20Segmentation%20using%20UNet">Show Project</a></p>
-                        <p>Supervised by: Dr. Biswajit Biswas, Assistant Professor, Ramakrishna Mission Vivekananda Centenary College</p>
-                    </div>
-
-                    <div class="card">
-                        <h3>Potato Disease Classification using CNN</h3>
-                        <p>This project classifies potato leaf diseases using deep learning techniques to improve early detection and successful crop cultivation in agriculture.</p>
-                        <p>Tools: Python, Deep Learning, CNN</p>
-                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/Potato%20Disease%20Classification%20using%20CNN">Show Project</a></p>
-                    </div>
-
-                    <div class="card">
-                        <h3>Virtual Assistant Using OpenAI</h3>
-                        <p>This Virtual Assistant mimics popular systems like Amazon Alexa or Siri using the OpenAI API, Python, and various libraries to create voice-interactive features.</p>
-                        <p>Tools: Python, OpenAI API, pyttsx3, speech_recognition, webbrowser</p>
-                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/Virtual%20Assistant.py">Show Project</a></p>
-                    </div>
-
-                    <div class="card">
-                        <h3>Number Tracking Game Using Backtracking Algorithms</h3>
-                        <p>This is a CLI-based game written in C++ where players race to reach a target number. The game uses backtracking algorithms and is designed so that the machine always wins if it selects first.</p>
-                        <p>Tools: C++</p>
-                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/NumberTracingGame.cpp">Show Project</a></p>
-                    </div>
-
-                    <div class="card">
-                        <h3>Data Structure and Algorithm - Open Source</h3>
-                        <p>Contributing to an open-source collection of data structure and algorithm implementations as per UGC syllabus for B.Sc. Computer Science students.</p>
-                        <p>Tools: C++, Data Structures & Algorithms</p>
-                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Data%20Structure">Show Project</a></p>
-                    </div>
-
-                    <div class="card">
-                        <h3>Medical Store Billing Management System Software</h3>
-                        <p>A CLI-based medical store billing management system software developed in C++ during the first semester of my studies.</p>
-                        <p>Tools: C++</p>
-                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/Medicalstorebillingsystem.cpp">Show Project</a></p>
-                    </div>
-                </div>
+                <h2>Experience</h2>
+                <ul>
+                    <li>
+                        <strong>Research Intern, IIT Kharagpur (Jan. 2025 – Ongoing)</strong><br>
+                        Department of Computer Science and Engineering, <a href="https://cse.iitkgp.ac.in">IIT Kharagpur</a>, India<br>
+                        <p>Project Title: Resource-Efficient Learning for Video Scene Understanding (RLV).</p>
+                        <p>Under Supervision: Prof. Abir Das, Department of Computer Science and Engineering, <a href="https://cse.iitkgp.ac.in/~adas/">IIT Kharagpur</a>.</p>
+                    </li>
+                    <li>
+                        <strong>IT Sub-Committee Member, Vidyarthi Sabha (Sept. 2023 – Sept. 2024)</strong><br>
+                        <a href="https://rkmrc.in">Ramakrishna Mission Residential College (Autonomous)</a>, Narendrapur, Kolkata, India<br>
+                        <p>Managed and provided IT consulting services as part of the Vidyarthi Sabha IT Sub-Committee.</p>
+                    </li>
+                    <li>
+                        <strong>Co-Organizer, Neuroverse Coding Competition (March 2023 – April 2023)</strong><br>
+                        <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College</a>, Rahara, Kolkata, India<br>
+                        <p>Designed and curated problem sets for Neuroverse, a college-level coding competition.</p>
+                    </li>
+                </ul>
             </div>
         </section>
 
@@ -326,10 +700,10 @@
             <div class="card">
                 <h2>Achievements</h2>
                 <ul>
-                    <li>1st Rank Holder in M.Sc (June 2025) </li>
+                    <li>1st Rank Holder in M.Sc., <a href="https://rkmrc.in">Ramakrishna Mission Residential College</a> (June 2025)</li>
                     <li>Selected for National Scholarship for Post Graduate Studies (Oct. 2024): Awarded to the top 10,000 students across India annually.</li>
-                    <li>3rd Rank in RKMVERI M.Sc Admission Test (June 2023) </li>
-                    <li>3rd Rank Holder in B.Sc Course (May 2023): Graduated from Ramakrishna Mission Vivekananda Centenary College.</li>
+                    <li>3rd Rank in <a href="https://www.caluniv.ac.in/">University of Calcutta</a> M.Sc. Admission Test (June 2023)</li>
+                    <li>3rd Rank Holder in B.Sc., <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College</a> (May 2023)</li>
                     <li>1st Rank in Intra-College Coding Competition (May 2022): Showcased problem-solving skills and coding expertise.</li>
                 </ul>
             </div>
@@ -339,7 +713,7 @@
             <div class="card">
                 <h2>Languages</h2>
                 <ul>
-                     <li>Bengali: Native Proficiency</li>
+                    <li>Bengali: Native Proficiency</li>
                     <li>English: Professional Working Proficiency</li>
                     <li>Hindi: Elementary Proficiency</li>
                 </ul>
@@ -362,23 +736,22 @@
             <div class="card">
                 <h2>Research Interests</h2>
                 <ul>
-                    <li>Computer Vision</li>
-                    <li>Deep Learning</li>
-                    <li>Generative Models</li>
-                    <li>Pattern Recognition</li>
-                    <li>Video Action Recognition</li>
+                    <li><a href="https://en.wikipedia.org/wiki/Computer_vision">Computer Vision</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Generative_model">Generative Models</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Pattern_recognition">Pattern Recognition</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Action_recognition">Video Action Recognition</a></li>
                     <li>Activity Detection</li>
                 </ul>
             </div>
         </section>
 
-        <section id="community-service">
+        <section id="curriculum-vitae">
             <div class="card">
-                <h2>Community Service Experience</h2>
-                <ul>
-                    <li><strong>IT Sub-Committee Member, Vidyarthi Sabha (2023–2024)</strong>: Ramakrishna Mission Residential College, Narendrapur, Kolkata</li>
-                    <li><strong>Co-Organizer & Question Setter, Neuroverse Coding Competition (March–April 2023)</strong>: Ramakrishna Mission Vivekananda Centenary College, Rahara, Kolkata</li>
-                </ul>
+                <h2>Curriculum Vitae</h2>
+                <p>Access my detailed Curriculum Vitae to learn more about my academic and professional journey:</p>
+                <p><a href="https://drive.google.com/your-cv-link">View CV on Google Drive</a></p>
+                <p><a href="Sudipta_Sarkar_CV.pdf" download>Download My Curriculum Vitae (CV)</a></p>
             </div>
         </section>
 
@@ -386,11 +759,10 @@
             <div class="card">
                 <h2>References</h2>
                 <ul>
-                    <li><strong>Dr. Chayan Halder</strong>: Assistant Professor, Department of Computer Science, Ramakrishna Mission Vivekananda Centenary College, Rahara Email: <a href="mailto:chayan.comp@rkmvccrahara.org">chayan.comp@rkmvccrahara.org</a></li>
-                    <li><strong>Dr. Siddhartha Banerjee</strong>: Associate Professor and Head of Department, Ramakrishna Mission Residential College, Narendrapur Email: <a href="mailto:sidd0102@yahoo.com">sidd0102@yahoo.com</a></li>                
-                    <li><strong>Br. Kedarachaitanya</strong>: Vice Principal (Monastic member of the Ramakrishna Math and Ramakrishna Mission), Ramakrishna Mission Residential College, Narendrapur. Email: <a href="mailto:vp@rkmrc.in">vp@rkmrc.in</a></li>
-                    <li><strong>Swami Vedanuragananda</strong>: Vice Principal (Monastic member of the Ramakrishna Math and Ramakrishna Mission), Ramakrishna Mission Vivekananda Centenary College, Rahara Email: <a href="mailto:bodhisattwamj@gmail.com">bodhisattwamj@gmail.com</a></li>
-                    
+                    <li><strong>Dr. Chayan Halder</strong> Assistant Professor, Department of Computer Science and Electronics, <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College</a>, Rahara. Email: <a href="mailto:chayan.comp@rkmvccrahara.org">chayan.comp@rkmvccrahara.org</a></li>
+                    <li><strong>Dr. Siddhartha Banerjee</strong>: Associate Professor and Head of Department, <a href="https://rkmrc.in">Ramakrishna Mission Residential College</a>, Narendrapur. Email: <a href="mailto:sidd0102@yahoo.com">sidd0102@yahoo.com</a></li>
+                    <li><strong>Br. Kedarachaitanya</strong>: Vice Principal (Monastic member of the Ramakrishna Math and Ramakrishna Mission), <a href="https://rkmrc.in">Ramakrishna Mission Residential College</a>, Narendrapur. Email: <a href="mailto:vp@rkmrc.in">vp@rkmrc.in</a></li>
+                    <li><strong>Swami Vedanuragananda</strong>: Vice Principal (Monastic member of the Ramakrishna Math and Ramakrishna Mission), <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College</a>, Rahara. Email: <a href="mailto:bodhisattamj@gmail.com">bodhisattamj@gmail.com</a></li>
                 </ul>
             </div>
         </section>
@@ -403,17 +775,63 @@
                     <li>Email: <a href="mailto:sudiptasarkar3600@gmail.com">sudiptasarkar3600@gmail.com</a></li>
                     <li>GitHub: <a href="https://github.com/Rik-Sarkar-07">https://github.com/Rik-Sarkar-07</a></li>
                     <li>LinkedIn: <a href="https://linkedin.com/in/sudipta-sarkar-0665b5253/">https://linkedin.com/in/sudipta-sarkar-0665b5253/</a></li>
-                    <li>Address: Department of Computer Science, Ramakrishna Mission Residential College (Autonomous), Narendrapur, Kolkata-700103</li>
+                    <li>X: <a href="https://x.com/yourprofile">[Your X Profile]</a></li>
+                    <li>YouTube: <a href="https://youtube.com/yourchannel">[Your YouTube Channel]</a></li>
+                    <li>Address: Department of Computer Science, <a href="https://rkmrc.in">Ramakrishna Mission Residential College (Autonomous)</a>, Narendrapur, Kolkata-700103</li>
                 </ul>
-                <p><a href="Sudipta_Sarkar_CV.pdf" download>Download My Curriculum Vitae(CV)</a></p>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3687.979128614053!2d88.39302531496428!3d22.43919198524153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0273b37c7b7f8b%3A0x5a8b6c8f8f8f8f8f!2sRamakrishna%20Mission%20Residential%20College%20(Autonomous)!5e0!3m2!1sen!2sin!4v1698765432109!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+                </div>
             </div>
         </section>
-        
     </div>
 
     <footer>
-        <p>&copy; 2025 Sudipta Sarkar | <a href="mailto:sudiptasarkar3600@gmail.com">Contact Me</a></p>
+        <p>© 2025 Sudipta Sarkar | Department of Computer Science, <a href="https://rkmrc.in">Ramakrishna Mission Residential College</a>, Narendrapur, Kolkata</p>
+        <div class="social-icons">
+            <a href="mailto:sudiptasarkar3600@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/Rik-Sarkar-07"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/sudipta-sarkar-0665b5253/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://x.com/yourprofile"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://youtube.com/yourchannel"><i class="fab fa-youtube"></i></a>
+        </div>
     </footer>
-</body>
 
+    <script>
+        // Dark Mode Toggle
+        const themeSwitch = document.getElementById('theme-switch');
+        const body = document.body;
+
+        // Load saved theme from localStorage
+        if (localStorage.getItem('theme') === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            themeSwitch.checked = true;
+        }
+
+        themeSwitch.addEventListener('change', () => {
+            if (themeSwitch.checked) {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Sidebar Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking a link
+        sidebar.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+            });
+        });
+    </script>
+</body>
 </html>
