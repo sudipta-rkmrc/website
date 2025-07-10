@@ -117,11 +117,12 @@
             overflow-y: auto;
             border-right: 1px solid var(--border-color);
             z-index: 1000;
+            transform: translateX(-250px);
             transition: transform 0.3s ease;
         }
 
-        .sidebar.hidden {
-            transform: translateX(-250px);
+        .sidebar:not(.hidden) {
+            transform: translateX(0);
         }
 
         .sidebar .nav-container {
@@ -165,7 +166,7 @@
         }
 
         .menu-toggle {
-            display: none;
+            display: block;
             position: fixed;
             top: 1rem;
             left: 1rem;
@@ -182,9 +183,14 @@
 
         /* Container */
         .container {
-            margin-left: 270px;
+            margin-left: 0;
             padding: 2rem;
             max-width: 900px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .sidebar:not(.hidden) ~ .container {
+            margin-left: 270px;
         }
 
         .card {
@@ -455,24 +461,6 @@
         }
 
         /* Media Queries */
-        @media (max-width: 1024px) {
-            .sidebar {
-                transform: translateX(-250px);
-            }
-
-            .sidebar:not(.hidden) {
-                transform: translateX(0);
-            }
-
-            .container {
-                margin-left: 0;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-        }
-
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2rem;
@@ -544,7 +532,7 @@
     </header>
 
     <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-    <nav class="sidebar">
+    <nav class="sidebar hidden">
         <div class="nav-container">
             <a href="index.html">Home</a>
             <a href="#about">About</a>
@@ -871,18 +859,6 @@
                 sidebar.classList.add('hidden');
             });
         });
-
-        // Ensure sidebar is visible on larger screens
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 1024) {
-                sidebar.classList.remove('hidden');
-            }
-        });
-
-        // Initial check for sidebar visibility
-        if (window.innerWidth > 1024) {
-            sidebar.classList.remove('hidden');
-        }
     </script>
 </body>
 </html>
