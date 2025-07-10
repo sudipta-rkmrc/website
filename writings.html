@@ -1,36 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Writings - Sudipta Sarkar</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* General Styles */
+        :root {
+            --primary-color: #2b6cb0;
+            --secondary-color: #4a5568;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #1a202c;
+            --link-color: #3182ce;
+            --border-color: #e2e8f0;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #00ccff;
+            --secondary-color: #b0b0b0;
+            --bg-color: #1a202c;
+            --card-bg: #2d3748;
+            --text-color: #e2e8f0;
+            --link-color: #00ccff;
+            --border-color: #4a5568;
+            --shadow-color: rgba(0, 204, 255, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Open Sans', Arial, sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            background-image: url('wr.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #333;
+            background: var(--bg-color);
+            color: var(--text-color);
         }
 
         /* Header */
         header {
-            background: rgba(0, 115, 230, 0.85);
-            color: white;
+            background: var(--card-bg);
+            color: var(--text-color);
             text-align: center;
             padding: 2rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
         }
 
         header h1 {
+            font-family: 'Lora', serif;
             font-size: 2rem;
             margin: 0.5rem 0;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-toggle input {
+            display: none;
+        }
+
+        .theme-toggle label {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle label:hover {
+            transform: scale(1.1);
         }
 
         /* Navigation */
@@ -38,87 +93,172 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            background: #005bb5;
+            background: var(--primary-color);
             padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border-color);
         }
 
         nav a {
-            color: white;
+            color: var(--card-bg);
             text-decoration: none;
             margin: 0 1rem;
             font-weight: bold;
             font-size: 1rem;
+            transition: color 0.3s ease;
         }
 
         nav a:hover {
+            color: var(--link-color);
             text-decoration: underline;
         }
 
         /* Container */
         .container {
             width: 90%;
-            max-width: 800px;
-            margin: auto;
-            padding: 2rem 0;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
         }
 
-        .poem {
-            background: #fff;
+        .poem, .story {
+            background: var(--card-bg);
             padding: 1.5rem;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px var(--shadow-color);
             margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease forwards;
         }
 
-        .poem-title {
+        .poem-title, .story-title {
+            font-family: 'Lora', serif;
             font-weight: bold;
             font-size: 1.5rem;
-            color: #005bb5;
+            color: var(--primary-color);
             margin-bottom: 1rem;
         }
 
-        .poem-content {
+        .poem-content, .story-content {
             white-space: pre-line;
+            font-size: 1rem;
+        }
+
+        .story-preview {
+            display: block;
+        }
+
+        .story-full {
+            display: none;
+        }
+
+        .story-full.active {
+            display: block;
+        }
+
+        .show-more {
+            background: var(--primary-color);
+            color: var(--card-bg);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .show-more:hover {
+            background: var(--link-color);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Footer */
         footer {
-            background: #333;
-            color: white;
+            background: var(--card-bg);
+            color: var(--text-color);
             text-align: center;
             padding: 1rem;
             margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
         }
 
         footer a {
-            color: #4db8ff;
+            color: var(--link-color);
             text-decoration: none;
         }
 
         footer a:hover {
             text-decoration: underline;
         }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            .poem, .story {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            nav a {
+                margin: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .poem-title, .story-title {
+                font-size: 1.3rem;
+            }
+        }
     </style>
 </head>
-
 <body>
     <header>
+        <div class="theme-toggle">
+            <input type="checkbox" id="theme-switch">
+            <label for="theme-switch"><i class="fas fa-moon"></i></label>
+        </div>
         <h1>My Writings</h1>
         <p>Poems and thoughts by Sudipta Sarkar</p>
     </header>
 
     <nav>
-        <a href="index.html">Home</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#education">Education</a>
-        <a href="index.html#skills">Skills</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#achievements">Achievements</a>
-        <a href="index.html#languages">Languages</a>
-        <a href="index.html#references">References</a>
+        <a href="index_academic_refined.html">Home</a>
+        <a href="index_academic_refined.html#about">About</a>
+        <a href="index_academic_refined.html#education">Education</a>
+        <a href="index_academic_refined.html#skills">Skills</a>
+        <a href="index_academic_refined.html#projects">Projects</a>
+        <a href="index_academic_refined.html#achievements">Achievements</a>
+        <a href="index_academic_refined.html#languages">Languages</a>
+        <a href="index_academic_refined.html#references">References</a>
         <a href="writings.html">My Writings</a>
         <a href="gallery.html">Gallery</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="index_academic_refined.html#contact">Contact</a>
     </nav>
 
     <div class="container">
@@ -190,7 +330,6 @@
             </div>
         </div>
 
-        <div class="container">
         <div class="poem">
             <div class="poem-title">কোথায় ঈশ্বর?</div>
             <div class="poem-content">
@@ -222,7 +361,6 @@
             </div>
         </div>
 
-          <div class="container">
         <div class="poem">
             <div class="poem-title">সন্ন্যাসী সুভাষচন্দ্র</div>
             <div class="poem-content">
@@ -258,10 +396,8 @@
             </div>
         </div>
 
-
-        <div class="container">
         <div class="poem">
-            <div class="poem-title">আমি কে ?</div>
+            <div class="poem-title">আমি কে?</div>
             <div class="poem-content">
                 আমি কে? আমি কি শুধু এক নাম?
                 নাম ছাড়া আমার কি কোনোই দাম?
@@ -292,9 +428,8 @@
             </div>
         </div>
 
-        <div class="container">
         <div class="poem">
-            <div class="poem-title"> শিব </div>
+            <div class="poem-title">শিব</div>
             <div class="poem-content">
                 হিমালয়ের শ্বেত শিখরে,
                 ধ্যানে মগ্ন এক মহাযোগী।
@@ -318,8 +453,6 @@
             </div>
         </div>
 
-            
-        <div class="container">
         <div class="poem">
             <div class="poem-title">সিদ্ধার্থ থেকে বুদ্ধ</div>
             <div class="poem-content">
@@ -355,7 +488,6 @@
             </div>
         </div>
 
-            <div class="container">
         <div class="poem">
             <div class="poem-title">প্রথম ভালোবাসা</div>
             <div class="poem-content">
@@ -386,9 +518,8 @@
             </div>
         </div>
 
-<div class="container">
         <div class="poem">
-            <div class="poem-title"> বুদ্ধের জাগরণ </div>
+            <div class="poem-title">বুদ্ধের জাগরণ</div>
             <div class="poem-content">
                 রাজ্য, বৈভব, বিলাস মিছে,
                 সত্যের টানে মন যে কাঁদে।
@@ -414,37 +545,83 @@
                 "ত্যাগ করো হিংসা ও অভিমানই,
                 প্রেম আর করুণার পথে হাঁটো,
                 সেই সুখই চিরকাল থাকো।"
-
             </div>
         </div>
 
+        <div class="story">
+            <div class="story-title">The Code of Enlightenment</div>
+            <div class="story-content story-preview">
+                In a quiet village nestled near the Ganges, a young coder named Arjun sought truth beyond his algorithms. Each night, under a banyan tree, he meditated, merging the logic of code with the wisdom of the Upanishads. One evening, a mysterious sage appeared, offering a challenge: write a program to find the "path to peace" in a chaotic world.
+                <!-- Preview ends here -->
+            </div>
+            <div class="story-content story-full">
+                In a quiet village nestled near the Ganges, a young coder named Arjun sought truth beyond his algorithms. Each night, under a banyan tree, he meditated, merging the logic of code with the wisdom of the Upanishads. One evening, a mysterious sage appeared, offering a challenge: write a program to find the "path to peace" in a chaotic world.
 
+                Arjun, intrigued, began his quest. He wrote algorithms to analyze human emotions, drawing from his knowledge of deep learning. He trained models on texts of ancient scriptures, seeking patterns of compassion and selflessness. Yet, each program failed—accuracy was high, but the essence of peace eluded him.
 
+                Days turned to weeks. Arjun visited Ramakrishna Mission ashrams, seeking guidance from monks. One monk, with a gentle smile, said, "Code is but a tool, like a chisel to a sculptor. Peace lies not in the output, but in the coder’s heart." Arjun pondered this, realizing his pursuit was too mechanical.
 
+                Returning to his village, he rewrote his approach—not as a coder, but as a seeker. He created a simple program that encouraged acts of kindness, connecting people to help one another. It wasn’t complex, but it spread joy. Villagers shared resources, and smiles replaced frowns.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-        
-      
-        <!-- Add more poems below -->
+                One night, under the same banyan tree, the sage returned. "You’ve found it," he said. "Peace is not an algorithm—it’s service, love, and sacrifice." Arjun smiled, his heart lighter. His code had become a bridge to the divine, proving that true enlightenment lies in uplifting others.
+            </div>
+            <button class="show-more">Show More</button>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 Sudipta Sarkar. All rights reserved.</p>
+        <p>© 2025 Sudipta Sarkar | Department of Computer Science, <a href="https://rkmrc.in">Ramakrishna Mission Residential College</a>, Narendrapur, Kolkata</p>
+        <div class="social-icons">
+            <a href="mailto:sudiptasarkar3600@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/Rik-Sarkar-07"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/sudipta-sarkar-0665b5253/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://x.com/yourprofile"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://youtube.com/yourchannel"><i class="fab fa-youtube"></i></a>
+        </div>
     </footer>
-</body>
 
+    <script>
+        // Debug: Log to confirm script execution
+        console.log('JavaScript loaded');
+
+        // Dark Mode Toggle
+        const themeSwitch = document.getElementById('theme-switch');
+        const body = document.body;
+
+        // Load saved theme from localStorage
+        if (localStorage.getItem('theme') === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            themeSwitch.checked = true;
+        }
+
+        themeSwitch.addEventListener('change', () => {
+            console.log('Theme toggle clicked');
+            if (themeSwitch.checked) {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Show More Button for Story
+        const showMoreBtn = document.querySelector('.show-more');
+        const storyPreview = document.querySelector('.story-preview');
+        const storyFull = document.querySelector('.story-full');
+
+        showMoreBtn.addEventListener('click', () => {
+            console.log('Show More clicked');
+            if (storyFull.classList.contains('active')) {
+                storyFull.classList.remove('active');
+                storyPreview.classList.add('active');
+                showMoreBtn.textContent = 'Show More';
+            } else {
+                storyFull.classList.add('active');
+                storyPreview.classList.remove('active');
+                showMoreBtn.textContent = 'Show Less';
+            }
+        });
+    </script>
+</body>
 </html>
