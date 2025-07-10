@@ -30,6 +30,10 @@
             --shadow-color: rgba(0, 204, 255, 0.2);
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Open Sans', Arial, sans-serif;
             margin: 0;
@@ -183,19 +187,19 @@
 
         /* Container */
         .container {
-            margin-left: 0;
-            padding: 2rem;
+            margin: 0 auto;
+            padding: 2rem 1rem;
             max-width: 900px;
             transition: margin-left 0.3s ease;
         }
 
         .sidebar:not(.hidden) ~ .container {
-            margin-left: 270px;
+            margin-left: 250px;
         }
 
         .card {
             background: var(--card-bg);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 8px;
             margin-bottom: 2rem;
             border: 1px solid var(--border-color);
@@ -478,16 +482,20 @@
                 font-size: 1.8rem;
             }
 
-            .card {
+            .container {
                 padding: 1.5rem;
+            }
+
+            .sidebar:not(.hidden) ~ .container {
+                margin-left: 250px;
+            }
+
+            .card {
+                padding: 1rem;
             }
 
             .skills-list, .projects-list {
                 grid-template-columns: 1fr;
-            }
-
-            .container {
-                padding: 1.5rem;
             }
 
             .map-container {
@@ -511,6 +519,10 @@
 
             .container {
                 padding: 1rem;
+            }
+
+            .sidebar:not(.hidden) ~ .container {
+                margin-left: 250px;
             }
 
             .map-container {
