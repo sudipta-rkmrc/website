@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Vlogs - Sudipta Sarkar</title>
+    <title>Technical Articles - Sudipta Sarkar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -120,42 +120,44 @@
             padding: 2rem 1rem;
         }
 
-        .coming-soon {
+        /* Article Section */
+        .articles-section {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-card {
             background: var(--card-bg);
             padding: 1.5rem;
             border-radius: 10px;
             box-shadow: 0 4px 10px var(--shadow-color);
-            margin-bottom: 1.5rem;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeIn 0.5s ease forwards;
-            text-align: center;
         }
 
-        .coming-soon-title {
+        .article-card h2 {
             font-family: 'Lora', serif;
-            font-weight: bold;
             font-size: 1.5rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin: 0 0 0.5rem;
         }
 
-        .coming-soon-content {
+        .article-card p {
             font-size: 1rem;
             color: var(--text-color);
+            margin: 0 0 1rem;
         }
 
-        .ellipsis::after {
-            content: '...';
-            display: inline-block;
-            animation: dots 1.5s steps(4, end) infinite;
+        .article-card a {
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: bold;
         }
 
-        @keyframes dots {
-            0%, 20% { content: ''; }
-            40% { content: '.'; }
-            60% { content: '..'; }
-            80%, 100% { content: '...'; }
+        .article-card a:hover {
+            text-decoration: underline;
         }
 
         @keyframes fadeIn {
@@ -198,8 +200,12 @@
                 padding: 1.5rem;
             }
 
-            .coming-soon {
+            .article-card {
                 padding: 1rem;
+            }
+
+            .article-card h2 {
+                font-size: 1.3rem;
             }
         }
 
@@ -217,8 +223,8 @@
                 padding: 1rem;
             }
 
-            .coming-soon-title {
-                font-size: 1.3rem;
+            .article-card h2 {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -229,8 +235,8 @@
             <input type="checkbox" id="theme-switch">
             <label for="theme-switch"><i class="fas fa-moon"></i></label>
         </div>
-        <h1>Technical Vlogs</h1>
-        <p>Coming Soon - Sudipta Sarkar</p>
+        <h1>Technical Articles</h1>
+        <p>Explore Insights by Sudipta Sarkar</p>
     </header>
 
     <nav>
@@ -244,15 +250,68 @@
         <a href="index.html#references">References</a>
         <a href="writings.html">My Writings</a>
         <a href="gallery.html">Gallery</a>
-        <a href="technical-vlogs.html">Technical Vlogs</a>
+        <a href="technical-articles.html">Technical Articles</a>
         <a href="index.html#contact">Contact</a>
     </nav>
 
     <div class="container">
-        <div class="coming-soon">
-            <div class="coming-soon-title">Technical Vlogs Coming Soon<span class="ellipsis"></span></div>
-            <div class="coming-soon-content">
-                Stay tuned for exciting technical vlogs exploring the world of coding, algorithms, and technology! I’m working on creating content that blends computer science with practical insights, inspired by my journey at Ramakrishna Mission Residential College. Follow the <a href="index.html#activities">Recent Activities</a> section on my website for updates on upcoming vlogs.
+        <div class="articles-section">
+            <div class="article-card">
+                <h2>An Intuitive Introduction to Linear Algebra</h2>
+                <p>This paper provides a comprehensive and intuitive introduction to fundamental linear
+
+                    algebra concepts, structured to facilitate understanding for students and researchers. Con-
+                    cepts are presented in a logical progression, from vectors to eigenvalues, each with precise
+                    
+                    definitions, intuitive real-life analogies, and detailed mathematical and geometric examples.
+                    Visualizations in 2D and 3D coordinate systems, rendered using tikz, enhance geometric
+                    intuition. The paper serves as a resource for academic study and applications in fields like
+                    machine learning, physics, and engineering.</p>
+                <a href="https://drive.google.com/drive/folders/1iGJiulZ1H-S_RwOhA1RJDeOj42RH4MGT">Read the Full Article</a>
+            </div>
+            <div class="article-card">
+                <h2>Complexity Theory</h2>
+                <p>This report presents a comprehensive graduate-level survey of complexity theory, a
+                    foundational branch of theoretical computer science concerned with the computational
+                    resources required to solve problems. The discussion begins with computability theory,
+                    covering fundamental notions such as decidability, the Chomsky hierarchy, and variants
+                    of Turing machines (TM, DTM, NTM, HTM). We then introduce formal measures of
+                    
+                    complexity and examine central complexity classes (L, NL, P, NP, co-NP, NP-Hard, NP-
+                    Complete, PSPACE, EXP, and beyond), providing illustrative examples and emphasizing
+                    
+                    their theoretical and practical importance. The report also catalogs major theorems (e.g.,
+                    Cook–Levin, Savitch, PCP), foundational axioms and theses (e.g., Church–Turing Thesis),
+                    central hypotheses (e.g., P ≠ NP, ETH), and canonical decision problems (e.g., the Halting
+                    Problem, Circuit-SAT, TQBF). Where appropriate, proof sketches and visual aids are
+                    included to clarify concepts, and the interrelationships among classes are summarized.
+                    Designed for both seminar presentations and academic study, this document aims to deliver
+                    a rigorous yet accessible account of complexity theory as of August 2025.</p>
+                <a href="https://drive.google.com/drive/folders/1iGJiulZ1H-S_RwOhA1RJDeOj42RH4MGT">Read the Full Article</a>
+            </div>
+            <div class="article-card">
+                <h2>Introduction to Proof Methodologies in Discrete Mathematics and Computer Science</h2>
+                <p>This paper provides a comprehensive introduction to proof methodologies in discrete
+                    mathematics and computer science, emphasizing graph theory and algorithms. We define
+                    proofs, categorize their types, and highlight their importance in validating theoretical
+                    and applied results. Disproof strategies, particularly counterexamples, are also explored.
+                    Each proof method is illustrated with three detailed examples, primarily in graph theory
+                    and algorithms, with step-by-step explanations to ensure clarity. This work serves as an
+                    accessible resource for students and researchers.</p>
+                <a href="https://drive.google.com/drive/folders/1iGJiulZ1H-S_RwOhA1RJDeOj42RH4MGT">Read the Full Article</a>
+            </div>
+            <div class="article-card">
+                <h2>An Intuitive Introduction to Backpropagation in Deep Learning</h2>
+                <p>Backpropagation is the cornerstone of neural network training, enabling weight opti-
+                    mization to minimize prediction errors. This paper provides a rigorous yet intuitive intro-
+                    duction to backpropagation, covering weighted sums, activation functions, loss and cost
+                    
+                    functions, and gradient descent. Six numerical examples, each fully solved with forward
+                    and backward pass calculations and neural network diagrams, demonstrate its application
+                    across diverse architectures, activation functions, and loss functions. Visualizations of
+                    gradient descent and network structures, combined with real-world analogies, make the
+                    concepts accessible to researchers and practitioners.</p>
+                <a href="https://drive.google.com/drive/folders/1iGJiulZ1H-S_RwOhA1RJDeOj42RH4MGT">Read the Full Article</a>
             </div>
         </div>
     </div>
