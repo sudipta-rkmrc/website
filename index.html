@@ -18,7 +18,6 @@
             --border-color: #e2e8f0;
             --shadow-color: rgba(0, 0, 0, 0.1);
         }
-
         [data-theme="dark"] {
             --primary-color: #00ccff;
             --secondary-color: #b0b0b0;
@@ -29,11 +28,9 @@
             --border-color: #4a5568;
             --shadow-color: rgba(0, 204, 255, 0.2);
         }
-
         * {
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Open Sans', Arial, sans-serif;
             margin: 0;
@@ -43,7 +40,6 @@
             color: var(--text-color);
             scroll-behavior: smooth;
         }
-
         /* Header */
         header {
             background: var(--card-bg);
@@ -52,7 +48,6 @@
             border-bottom: 1px solid var(--border-color);
             position: relative;
         }
-
         header .profile-img {
             width: 160px;
             height: 160px;
@@ -61,31 +56,70 @@
             margin-bottom: 1.5rem;
             transition: transform 0.3s ease;
         }
-
         header .profile-img:hover {
             transform: scale(1.05) rotate(5deg);
         }
-
         header h1 {
             font-family: 'Lora', serif;
             font-size: 2.5rem;
             font-weight: 600;
             margin: 0.5rem 0;
         }
-
         header h3 {
             font-size: 1.2rem;
             color: var(--secondary-color);
             font-style: italic;
             margin-bottom: 1rem;
         }
-
         header p {
             font-size: 1.1rem;
             max-width: 700px;
             margin: 0 auto;
         }
-
+        /* Header Social Links */
+        .header-social {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding: 0.5rem;
+        }
+        .header-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--border-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 50%;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: iconSlideIn 0.5s ease forwards;
+        }
+        .header-social a:nth-child(1) { animation-delay: 0.1s; }
+        .header-social a:nth-child(2) { animation-delay: 0.15s; }
+        .header-social a:nth-child(3) { animation-delay: 0.2s; }
+        .header-social a:nth-child(4) { animation-delay: 0.25s; }
+        .header-social a:nth-child(5) { animation-delay: 0.3s; }
+        .header-social a:nth-child(6) { animation-delay: 0.35s; }
+        .header-social a:nth-child(7) { animation-delay: 0.4s; }
+        .header-social a:hover {
+            background: var(--link-color);
+            color: var(--card-bg);
+            transform: translateY(-3px) scale(1.1);
+        }
+        @keyframes iconSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         /* Dark Mode Toggle */
         .theme-toggle {
             position: absolute;
@@ -94,22 +128,18 @@
             display: flex;
             align-items: center;
         }
-
         .theme-toggle input {
             display: none;
         }
-
         .theme-toggle label {
             cursor: pointer;
             font-size: 1.2rem;
             color: var(--text-color);
             transition: transform 0.3s ease;
         }
-
         .theme-toggle label:hover {
             transform: scale(1.1);
         }
-
         /* Sidebar Navigation */
         .sidebar {
             width: 250px;
@@ -124,15 +154,12 @@
             transform: translateX(-250px);
             transition: transform 0.3s ease;
         }
-
         .sidebar:not(.hidden) {
             transform: translateX(0);
         }
-
         .sidebar .nav-container {
             padding: 2rem 1rem;
         }
-
         .sidebar a {
             display: block;
             color: var(--text-color);
@@ -144,12 +171,10 @@
             transform: translateX(-20px);
             transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
         }
-
         .sidebar:not(.hidden) a {
             opacity: 1;
             transform: translateX(0);
         }
-
         .sidebar a:nth-child(1) { transition-delay: 0.1s; }
         .sidebar a:nth-child(2) { transition-delay: 0.15s; }
         .sidebar a:nth-child(3) { transition-delay: 0.2s; }
@@ -163,12 +188,10 @@
         .sidebar a:nth-child(11) { transition-delay: 0.6s; }
         .sidebar a:nth-child(12) { transition-delay: 0.65s; }
         .sidebar a:nth-child(13) { transition-delay: 0.7s; }
-
         .sidebar a:hover {
             color: var(--link-color);
             transform: translateX(5px);
         }
-
         .menu-toggle {
             display: block;
             position: fixed;
@@ -180,11 +203,9 @@
             z-index: 1001;
             transition: transform 0.3s ease;
         }
-
         .menu-toggle:hover {
             transform: scale(1.1);
         }
-
         /* Container */
         .container {
             margin: 0 auto;
@@ -192,11 +213,9 @@
             max-width: 900px;
             transition: margin-left 0.3s ease;
         }
-
         .sidebar:not(.hidden) ~ .container {
             margin-left: 250px;
         }
-
         .card {
             background: var(--card-bg);
             padding: 1.5rem;
@@ -208,19 +227,16 @@
             transform: translateY(20px) scale(0.98);
             animation: cardFadeIn 0.5s ease forwards;
         }
-
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 8px var(--shadow-color);
         }
-
         @keyframes cardFadeIn {
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
             }
         }
-
         h2 {
             font-family: 'Lora', serif;
             font-size: 2rem;
@@ -228,25 +244,20 @@
             margin-bottom: 1.5rem;
             font-weight: 600;
         }
-
         ul {
             padding-left: 1.5rem;
         }
-
         ul li {
             margin-bottom: 0.8rem;
             font-size: 1rem;
         }
-
         a {
             color: var(--link-color);
             text-decoration: none;
         }
-
         a:hover {
             text-decoration: underline;
         }
-
         /* Skills Layout */
         .skills-list {
             display: grid;
@@ -255,7 +266,6 @@
             list-style: none;
             padding: 0;
         }
-
         .skills-list li {
             padding: 1rem;
             border: 1px solid var(--border-color);
@@ -265,7 +275,6 @@
             transform: translateY(10px);
             animation: skillFadeIn 0.5s ease forwards;
         }
-
         .skills-list li:nth-child(1) { animation-delay: 0.1s; }
         .skills-list li:nth-child(2) { animation-delay: 0.15s; }
         .skills-list li:nth-child(3) { animation-delay: 0.2s; }
@@ -275,25 +284,21 @@
         .skills-list li:nth-child(7) { animation-delay: 0.4s; }
         .skills-list li:nth-child(8) { animation-delay: 0.45s; }
         .skills-list li:nth-child(9) { animation-delay: 0.5s; }
-
         .skills-list li:hover {
             transform: translateY(-3px) rotate(2deg);
         }
-
         @keyframes skillFadeIn {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
         /* Projects Layout */
         .projects-list {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
         }
-
         .project-item {
             padding: 1.5rem;
             border: 1px solid var(--border-color);
@@ -303,7 +308,6 @@
             animation: projectFadeIn 0.5s ease forwards;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
-
         .project-item:nth-child(1) { animation-delay: 0.1s; }
         .project-item:nth-child(2) { animation-delay: 0.15s; }
         .project-item:nth-child(3) { animation-delay: 0.2s; }
@@ -313,31 +317,26 @@
         .project-item:nth-child(7) { animation-delay: 0.4s; }
         .project-item:nth-child(8) { animation-delay: 0.45s; }
         .project-item:nth-child(9) { animation-delay: 0.5s; }
-
         .project-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 8px var(--shadow-color);
             border-color: var(--link-color);
         }
-
         .project-item h3 {
             font-size: 1.3rem;
             margin: 0 0 0.5rem;
         }
-
         @keyframes projectFadeIn {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
         /* Timeline for Recent Activities */
         .timeline {
             position: relative;
             padding: 1rem 0;
         }
-
         .timeline-item {
             position: relative;
             padding-left: 2rem;
@@ -346,22 +345,18 @@
             transform: translateX(-20px);
             animation: timelineSlideIn 0.5s ease forwards;
         }
-
         .timeline-item:nth-child(1) { animation-delay: 0.1s; }
         .timeline-item:nth-child(2) { animation-delay: 0.15s; }
         .timeline-item:nth-child(3) { animation-delay: 0.2s; }
-
         .timeline-item:hover {
             transform: scale(1.02);
         }
-
         @keyframes timelineSlideIn {
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
-
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -372,7 +367,6 @@
             background: var(--primary-color);
             border-radius: 50%;
         }
-
         .timeline-item::after {
             content: '';
             position: absolute;
@@ -382,21 +376,17 @@
             width: 2px;
             background: var(--border-color);
         }
-
         .timeline-item:last-child::after {
             display: none;
         }
-
         .timeline-item h3 {
             font-size: 1.2rem;
             margin: 0 0 0.5rem;
         }
-
         .timeline-item p {
             margin: 0;
             color: var(--secondary-color);
         }
-
         /* Google Maps Embed */
         .map-container {
             margin-top: 1rem;
@@ -407,19 +397,16 @@
             opacity: 0;
             animation: mapFadeIn 0.5s ease forwards 0.5s;
         }
-
         .map-container iframe {
             width: 100%;
             height: 100%;
             border: 0;
         }
-
         @keyframes mapFadeIn {
             to {
                 opacity: 1;
             }
         }
-
         /* Footer */
         footer {
             background: var(--card-bg);
@@ -429,7 +416,6 @@
             margin-top: 3rem;
             border-top: 1px solid var(--border-color);
         }
-
         footer .social-icons a {
             font-size: 1.6rem;
             margin: 0 1rem;
@@ -438,18 +424,15 @@
             animation: iconBounceIn 0.5s ease forwards;
             transition: transform 0.3s ease, color 0.3s ease;
         }
-
         footer .social-icons a:nth-child(1) { animation-delay: 0.1s; }
         footer .social-icons a:nth-child(2) { animation-delay: 0.15s; }
         footer .social-icons a:nth-child(3) { animation-delay: 0.2s; }
         footer .social-icons a:nth-child(4) { animation-delay: 0.25s; }
         footer .social-icons a:nth-child(5) { animation-delay: 0.3s; }
-
         footer .social-icons a:hover {
             transform: scale(1.2);
             color: var(--link-color);
         }
-
         @keyframes iconBounceIn {
             0% {
                 opacity: 0;
@@ -463,70 +446,71 @@
                 transform: scale(1);
             }
         }
-
         /* Media Queries */
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2rem;
             }
-
             header h3 {
                 font-size: 1.1rem;
             }
-
             header p {
                 font-size: 1rem;
             }
-
             h2 {
                 font-size: 1.8rem;
             }
-
             .container {
                 padding: 1.5rem;
             }
-
             .sidebar:not(.hidden) ~ .container {
                 margin-left: 250px;
             }
-
             .card {
                 padding: 1rem;
             }
-
             .skills-list, .projects-list {
                 grid-template-columns: 1fr;
             }
-
             .map-container {
                 height: 250px;
             }
+            .header-social {
+                gap: 0.8rem;
+            }
+            .header-social a {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
         }
-
         @media (max-width: 480px) {
             header .profile-img {
                 width: 120px;
                 height: 120px;
             }
-
             header h1 {
                 font-size: 1.6rem;
             }
-
             h2 {
                 font-size: 1.5rem;
             }
-
             .container {
                 padding: 1rem;
             }
-
             .sidebar:not(.hidden) ~ .container {
                 margin-left: 250px;
             }
-
             .map-container {
                 height: 200px;
+            }
+            .header-social {
+                gap: 0.6rem;
+            }
+            .header-social a {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -540,7 +524,27 @@
         <img src="Rik.jpg" alt="Sudipta Sarkar" class="profile-img" />
         <h1>Sudipta Sarkar (সুদীপ্ত সরকার)</h1>
         <h3><i>"Education is the manifestation of the perfection already in man." - <b>Swami Vivekananda (1863-1902)</b></i></h3>
-        <p>|| Learner || Computer Science || Deep Learning || Computer Vision ||</p>
+        <p>Junior Research Fellow || Computer Science || Deep Learning || Computer Vision </p>
+		<div class="header-social">
+            <a href="mailto:sudiptasarkar3600@gmail.com" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
+			
+			
+			<a href="https://drive.google.com/file/d/17pYJZziZ3zRoMYvhesVANdXfSoXIuT1S/view?usp=sharing" 
+			   download title="Download CV" aria-label="Curriculum Vitae">
+				<i class="fas fa-id-card"></i>
+			</a>
+
+			<a href="https://drive.google.com/file/d/14iCi0XJm91P7W9686o4BXGlZFrvRt0Wp/view?usp=sharing" 
+			   target="_blank" title="Research Statement" aria-label="Research Statement">
+				<i class="fas fa-flask"></i>
+			</a>
+
+
+            <a href="https://github.com/Rik-Sarkar-07" target="_blank" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/sudipta-sarkar-0665b5253/" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://x.com/sarkar360000" target="_blank" title="X (Twitter)" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@Rik-Sarkar--CS" target="_blank" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
     </header>
 
     <div class="menu-toggle"><i class="fas fa-bars"></i></div>
@@ -568,13 +572,14 @@
             <div class="card">
                 <h2>About Me</h2>
                <p>
-                    My name is Sudipta Sarkar (Rik), a strong follower of Swami Vivekananda, Thakur Shree Ramakrishna, and Holy Ma Sharada.
-                    I have recently completed my master's degree in Computer Science (June 2025) from 
+                    My name is Sudipta Sarkar (Rik), a strong follower of Swami Vivekananda, Thakur Shree Ramakrishna, and Holy Ma Sharada.<br>
+					
+					Currently, I am a <b>Junior Research Fellow (JRF)</b> at the <a href="https://cse.iitkgp.ac.in">Department of Computer Science and Engineering</a>, <a href="https://cse.iitkgp.ac.in/">IIT Kharagpur</a>.
+                    Before that, I have recently completed my master's degree in Computer Science (June 2025) from 
                     <a href="https://rkmrc.in">Ramakrishna Mission Residential College (Autonomous), Narendrapur</a>, 
                     and I earned my bachelor's degree in Computer Science (Hons.) from 
                     <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College, Rahara</a>.
-                    I have also qualified the UGC-NET (LS) examination for Assistant Professorship and Ph.D. eligibility 
-                    under the June 2025 cycle.
+                    I have also qualified the <a href="https://ugcnet.nta.ac.in" target="_blank">UGC NET</a> (LS) examination for Assistant Professorship and Ph.D. eligibility under the June 2025 cycle.
                 </p>
 
                 <p>
@@ -592,7 +597,10 @@
             <div class="card">
                 <h2>Recent Activities</h2>
                 <div class="timeline">
-
+					<div class="timeline-item">
+                        <h3>November 12, 2025</h3>
+                        <p>Started my new position as Junior Research Fellow (JRF) in the <a href="https://cse.iitkgp.ac.in">Department of Computer Science and Engineering</a> at <a href="https://www.iitkgp.ac.in/">IIT Kharagpur</a> under the supervision of <a href="https://cse.iitkgp.ac.in/~adas/">Prof. Abir Das</a>.</p>
+                    </div>
 
                      <div class="timeline-item">
                         <h3>August 14, 2025</h3>
@@ -600,13 +608,25 @@
                     </div>                 
                     
                     <div class="timeline-item">
-                        <h3>May 19, 2025</h3>
-                        <p>Final Semester Thesis Presentation and submission at <a href="https://rkmrc.in">RKMRC</a>.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>May 17, 2025</h3>
-                        <p>Given a Seminar on Image Generation and Diffusion Models at <a href="https://rkmrc.in">RKMRC</a>.</p>
-                    </div>
+					<h3>May 19, 2025</h3>
+						<p>
+							Final Semester Thesis Presentation and submission at 
+							<a href="https://rkmrc.in">RKMRC</a>.
+							<br>
+							<a href="https://docs.google.com/presentation/d/109zfr3p5yWYreHuTToWwC5_OrdICUVqM/edit?usp=sharing&ouid=105151262205047073385&rtpof=true&sd=true" target="_blank">View Presentation PPT</a>
+						</p>
+					</div>
+
+					<div class="timeline-item">
+						<h3>May 17, 2025</h3>
+						<p>
+							Given a Seminar on Image Generation and Diffusion Models at 
+							<a href="https://rkmrc.in">RKMRC</a>.
+							<br>
+							<a href="https://docs.google.com/presentation/d/1Mu4Q2-N8_cnO33fOp0PG4J060ad2GmN5/edit?usp=sharing&ouid=105151262205047073385&rtpof=true&sd=true" target="_blank">View Seminar PPT</a>
+						</p>
+					</div>
+
                     <div class="timeline-item">
                         <h3>January 7, 2025</h3>
                         <p>Started final year M.Sc. project on Video Action Recognition under <a href="https://cse.iitkgp.ac.in/~adas/">Dr. Abir Das</a> at <a href="https://cse.iitkgp.ac.in">IIT Kharagpur</a>.</p>
@@ -655,38 +675,53 @@
         <section id="projects">
             <div class="card">
                 <h2>Projects and Research</h2>
-                <div class="projects-list">
+                  
+				  <div class="projects-list">
+				                    <div class="project-item">
+                        <h3>Resource-Efficient Learning for Video Scene Understanding (RLV)</h3>
+                        <p>Developing Resource-Efficient Models for Video Scene Understanding and Video Analysis.</p>
+                        <p>Tools: <a href="https://pytorch.org">PyTorch</a>, Video Scene Understanding, Video Action Recognition, Activity Detection</p>
+                        <p>Project Status: Ongoing (at <a href="https://cse.iitkgp.ac.in">IIT Kharagpur</a>)</p>
+						<p>Project Link: Available soon </p>
+                        <p>Supervisor: <a href="https://cse.iitkgp.ac.in/~adas/">Dr. Abir Das</a>, Assistant Professor, <a href="https://cse.iitkgp.ac.in">IIT Kharagpur</a></p>
+                    </div>
+					
                     <div class="project-item">
                         <h3>Super Image For Efficient Large Scale Video Action Recognition</h3>
                         <p>Rearranged video frames into super images to convert video action recognition into an image classification task. Employed Hiera Vision Transformer (Hiera-ViT) as the classifier, achieving competitive results on <a href="https://deepmind.com/research/open-source/kinetics">Kinetics-400</a> and <a href="https://www.robots.ox.ac.uk/~vgg/data/something-something/">Something-Something V2</a> datasets.</p>
                         <p>Tools: <a href="https://pytorch.org">PyTorch</a>, Video Action Recognition, Activity Detection</p>
-                        <p>Project Status: Ongoing (Final Year M.Sc. Project at <a href="https://rkmrc.in">RKMRC</a>)</p>
+                        <p>Project Status: Completed [May. 2025] (Final Year M.Sc. Project at <a href="https://rkmrc.in">Ramakrishna Mission Residential College</a>)</p>
+						<p>Project Link: Available soon </p>
                         <p>Supervisor: <a href="https://cse.iitkgp.ac.in/~adas/">Dr. Abir Das</a>, Assistant Professor, <a href="https://cse.iitkgp.ac.in">IIT Kharagpur</a></p>
                     </div>
                     <div class="project-item">
                         <h3>Image Steganography and Steganalysis</h3>
                         <p>Focused on improving message hiding techniques using Steganography and applying Steganalysis to detect hidden signals. Aims to maximize PSNR and NCC values using optimizers like PSO and apply CNNs and LSTMs for Steganalysis.</p>
                         <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Steganography">Steganography</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, CNN, LSTM</p>
-                        <p>Project Status: Ongoing at <a href="https://rkmrc.in">RKMRC</a></p>
+                        <p>Project Status: Completed at [Nov. 2024] <a href="https://rkmrc.in">Ramakrishna Mission Residential College</a></p>
+						<p>Project Link: Available soon </p>
                         <p>Supervisors: Dr. Siddhartha Banerjee & Bibek Ranjan Ghosh, Associate Professors, <a href="https://rkmrc.in">Ramakrishna Mission Residential College</a></p>
                     </div>
                     <div class="project-item">
                         <h3>Human Facial Expressions Detection using CNN</h3>
                         <p>Aims to detect key human emotions like anger, disgust, fear, happiness, sadness, surprise, and neutrality using Convolutional Neural Networks (CNN). Achieved 61.25% validation accuracy after 42 epochs.</p>
                         <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, CNN</p>
-                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/FER%20Project">Show Project</a></p>
+                        <p>Project Status: Completed [May. 2023](Final Semester B.Sc. Project at <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College</a>)</p>
+						<p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/FER%20Project">Show Project</a></p>
                         <p>Supervised by: Prasenjit Das, Assistant Professor & Dr. Chayan Halder, Assistant Professor, <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College</a></p>
                     </div>
                     <div class="project-item">
                         <h3>Nuclei Segmentation using UNet</h3>
                         <p>Explores cell nuclei segmentation for microscopy image analysis, vital for biological studies, using UNet in resource-constrained environments.</p>
                         <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, <a href="https://en.wikipedia.org/wiki/U-Net">UNet</a></p>
-                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/Nuclei%20Segmentation%20using%20UNet">Show Project</a></p>
+                        <p>Project Status: Completed [May. 2023](Summer Project at <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College</a>)</p>
+						<p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/Nuclei%20Segmentation%20using%20UNet">Show Project</a></p>
                         <p>Supervised by: Dr. Biswajit Biswas, Assistant Professor, <a href="https://rkmvccrahara.org">Ramakrishna Mission Vivekananda Centenary College</a></p>
                     </div>
                     <div class="project-item">
                         <h3>Potato Disease Classification using CNN</h3>
                         <p>Classifies potato leaf diseases using deep learning to improve early detection and crop cultivation in agriculture.</p>
+						<p>Project Status: Completed [Feb. 2023]</p>
                         <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a>, CNN</p>
                         <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Deep%20Learning/Potato%20Disease%20Classification%20using%20CNN">Show Project</a></p>
                     </div>
@@ -694,24 +729,28 @@
                         <h3>Virtual Assistant Using OpenAI</h3>
                         <p>Developed a voice-interactive virtual assistant mimicking Amazon Alexa or Siri using the OpenAI API and Python libraries.</p>
                         <p>Tools: <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>, <a href="https://openai.com">OpenAI API</a>, pyttsx3, speech_recognition, webbrowser</p>
-                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/Virtual%20Assistant.py">Show Project</a></p>
+						<p>Project Status: Completed [Nov. 2022]</p>
+						<p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/Virtual%20Assistant.py">Show Project</a></p>
                     </div>
                     <div class="project-item">
                         <h3>Number Tracking Game Using Backtracking Algorithms</h3>
                         <p>CLI-based game in C++ where players race to reach a target number using backtracking algorithms, designed for the machine to win if it selects first.</p>
                         <p>Tools: <a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a></p>
+						<p>Project Status: Completed [May. 2022]</p>
                         <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/NumberTracingGame.cpp">Show Project</a></p>
                     </div>
                     <div class="project-item">
                         <h3>Data Structure and Algorithm - Open Source</h3>
                         <p>Contributed to an open-source collection of data structure and algorithm implementations for B.Sc. Computer Science students per UGC syllabus.</p>
                         <p>Tools: <a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>, <a href="https://en.wikipedia.org/wiki/Data_structure">Data Structures</a>, <a href="https://en.wikipedia.org/wiki/Algorithm">Algorithms</a></p>
-                        <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Data%20Structure">Show Project</a></p>
+                        <p>Project Status: Completed [May. 2022] </p>
+						<p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/tree/main/Data%20Structure">Show Project</a></p>
                     </div>
                     <div class="project-item">
                         <h3>Medical Store Billing Management System Software</h3>
                         <p>CLI-based billing system for medical stores developed in C++ during my first semester.</p>
                         <p>Tools: <a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a></p>
+						<p>Project Status: Completed [May. 2021] </p>
                         <p>Project Link: <a href="https://github.com/Rik-Sarkar-07/Codes/blob/main/Projects/Medicalstorebillingsystem.cpp">Show Project</a></p>
                     </div>
                 </div>
@@ -722,8 +761,14 @@
             <div class="card">
                 <h2>Experience</h2>
                 <ul>
+					 <li>
+                        <strong>Junior Research Fellow, IIT Kharagpur (Nov. 2025 – Ongoing)</strong><br>
+                        Department of Computer Science and Engineering, <a href="https://cse.iitkgp.ac.in">IIT Kharagpur</a>, India<br>
+                        <p>Project Title: Resource-Efficient Learning for Video Scene Understanding (RLV).</p>
+                        <p>Under Supervision: <a href="https://cse.iitkgp.ac.in/~adas/">Prof. Abir Das</a>, Department of Computer Science and Engineering, <a href="https://cse.iitkgp.ac.in">IIT Kharagpur</a>.</p>
+                    </li>
                     <li>
-                        <strong>Research Intern, IIT Kharagpur (Jan. 2025 – Ongoing)</strong><br>
+                        <strong>Research Intern, IIT Kharagpur (Jan. 2025 – Oct. 2025)</strong><br>
                         Department of Computer Science and Engineering, <a href="https://cse.iitkgp.ac.in">IIT Kharagpur</a>, India<br>
                         <p>Project Title: Resource-Efficient Learning for Video Scene Understanding (RLV).</p>
                         <p>Under Supervision: <a href="https://cse.iitkgp.ac.in/~adas/">Prof. Abir Das</a>, Department of Computer Science and Engineering, <a href="https://cse.iitkgp.ac.in">IIT Kharagpur</a>.</p>
@@ -746,7 +791,7 @@
             <div class="card">
                 <h2>Achievements</h2>
                 <ul>
-                    <li>Qualified UGC - NET (LS) exam with 99.83 percentile in June 2025 cycle (July 2025)</li>
+                    <li>Qualified <a href="https://ugcnet.nta.ac.in" target="_blank">UGC NET</a> exam with 99.83 percentile in June 2025 cycle (July 2025)</li>
                     <li>1st Rank Holder in M.Sc., <a href="https://rkmrc.in">Ramakrishna Mission Residential College</a> (June 2025)</li>
                     <li>Selected for National Scholarship for Post Graduate Studies (Oct. 2024): Awarded to the top 10,000 students across India annually.</li>
                     <li>3rd Rank in <a href="https://rkmvu.ac.in/">Ramakrishna Mission Vivekananda Educational and Research Institute</a> M.Sc. Admission Test (June 2023)</li>
@@ -782,7 +827,7 @@
         <section id="research-interests">
             <div class="card">
                 <h2>Research Interests</h2>
-                <p><a href="https://drive.google.com/file/d/1iS_3WcSonD_vjDumoNQ496X95WWgXIjJ/view" target="_blank" style="font-weight: bold; color: #007acc;">📄 View My Research Statement</a></p>
+                <p><a href="https://drive.google.com/file/d/14iCi0XJm91P7W9686o4BXGlZFrvRt0Wp/view?usp=sharing" target="_blank" style="font-weight: bold; color: #007acc;">📄 View My Research Statement</a></p>
                 <ul>
                     <li><a href="https://en.wikipedia.org/wiki/Computer_vision">Computer Vision</a></li>
                     <li><a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning</a></li>
@@ -799,8 +844,8 @@
             <div class="card">
                 <h2>Curriculum Vitae</h2>
                 <p>Access my detailed Curriculum Vitae to learn more about my academic and professional journey:</p>
-                <p><a href="https://drive.google.com/file/d/1TVrW6a_3lOgPjxC-aQC6j2pLwUpzjYOB/view?usp=sharing">View CV on Google Drive</a></p>
-                <p><a href="Sudipta_Sarkar_CV.pdf" download>Download My Curriculum Vitae (CV)</a></p>
+                <p><a href="https://drive.google.com/file/d/17pYJZziZ3zRoMYvhesVANdXfSoXIuT1S/view?usp=sharing">View CV on Google Drive</a></p>
+                <p><a href="https://drive.google.com/file/d/17pYJZziZ3zRoMYvhesVANdXfSoXIuT1S/view?usp=sharing" download>Download My Curriculum Vitae (CV)</a></p>
             </div>
         </section>
 
@@ -827,13 +872,23 @@
                     <li>X: <a href="https://x.com/sarkar360000">@sarkar360000</a></li>
                     <li>YouTube: <a href="https://www.youtube.com/@Rik-Sarkar--CS">Rik Sarkar</a></li>
                     <li>
-                        Address: Department of Computer Science, <a href="https://rkmrc.in">Ramakrishna Mission Residential College (Autonomous)</a>, Narendrapur, Kolkata-700103  
-                        <strong style="color: red;">(I am currently not available at this address — please drop a mail)</strong>
+                       <!-- Address: Department of Computer Science, <a href="https://rkmrc.in">Ramakrishna Mission Residential College (Autonomous)</a>, Narendrapur, Kolkata-700103 
+                        <strong style="color: red;">(I am currently not available at this address — please drop a mail)</strong> -->
+						 Address: Vikram Sarabhai Residential Complex, <a href="https://www.iitkgp.ac.in/">IIT Kharagpur </a>, Kharagpur, West Bengal 721302
                     </li>
                 </ul>
                 <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3687.979128614053!2d88.39302531496428!3d22.43919198524153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0273b37c7b7f8b%3A0x5a8b6c8f8f8f8f8f!2sRamakrishna%20Mission%20Residential%20College%20(Autonomous)!5e0!3m2!1sen!2sin!4v1698765432109!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
-                </div>
+                   <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3687.979128614053!2d88.39302531496428!3d22.43919198524153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0273b37c7b7f8b%3A0x5a8b6c8f8f8f8f8f!2sRamakrishna%20Mission%20Residential%20College%20(Autonomous)!5e0!3m2!1sen!2sin!4v1698765432109!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe> -->
+					<iframe 
+					  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d160138.25703078432!2d87.20784355981351!3d22.322283567391863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8d19165e9f167%3A0x60ee93a5a6b3dbcd!2sVikram%20Sarabhai%20Residential%20Complex%2C%20IIT%20Kharagpur!5e0!3m2!1sen!2sin!4v169→" 
+					  width="600" 
+					  height="450" 
+					  style="border:0;" 
+					  allowfullscreen="" 
+					  loading="lazy">
+					</iframe>
+
+				</div>
             </div>
         </section>
     </div>
